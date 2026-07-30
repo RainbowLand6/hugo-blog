@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Partition - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/partition/</link><description>Partition - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/partition/" rel="self" type="application/rss+xml"/><item><title>Topic 分区与消息 Key</title><link>https://blog.luhg.cn/06-topic%E5%88%86%E5%8C%BA%E4%B8%8E%E6%B6%88%E6%81%AFkey/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-topic%E5%88%86%E5%8C%BA%E4%B8%8E%E6%B6%88%E6%81%AFkey/</guid><description><![CDATA[<h1 id="topic-分区与消息-key">Topic 分区与消息 Key</h1>
+<p>目标：理解 Kafka 的并发能力来自哪里，以及哪些消息能够保证顺序。</p>
+<h2 id="1-topic-为什么有分区">1. Topic 为什么有分区</h2>
+<p>一个 Topic 可以拆成多个 Partition：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Topic: order-paid
+</span></span><span class="line"><span class="cl">├── Partition 0: 0, 1, 2, 3 ...
+</span></span><span class="line"><span class="cl">├── Partition 1: 0, 1, 2, 3 ...
+</span></span><span class="line"><span class="cl">└── Partition 2: 0, 1, 2, 3 ...</span></span></code></pre></div></div>
+<p>多个分区能由多个消费者并行处理，提高吞吐量。代价是：Kafka 只保证<strong>同一个分区内</strong>的消息顺序，不保证整个 Topic 的全局顺序。</p>]]></description></item></channel></rss>

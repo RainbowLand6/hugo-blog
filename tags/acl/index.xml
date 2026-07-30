@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>ACL - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/acl/</link><description>ACL - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 23 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/acl/" rel="self" type="application/rss+xml"/><item><title>06-ZooKeeper会话管理与ACL权限控制</title><link>https://blog.luhg.cn/06-zookeeper%E4%BC%9A%E8%AF%9D%E4%B8%8Eacl%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/</link><pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-zookeeper%E4%BC%9A%E8%AF%9D%E4%B8%8Eacl%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/</guid><description><![CDATA[<h2 id="一会话session是什么">一、会话（Session）是什么？</h2>
+<p>客户端连接 ZooKeeper 会建立一个<strong>会话</strong>。会话是 ZooKeeper 客户端和服务端之间的 TCP 长连接，它是临时节点和 Watcher 的生命基础。</p>
+<p>一个会话的生命周期：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>客户端发起连接 → Server 创建 Session → 分配 sessionId
+                ↓
+        客户端定期发心跳(ping)
+                ↓
+┌───────────────┴───────────────┐
+│  客户端正常断开（close）        │  心跳超时（sessionTimeout）
+│  → 主动销毁 Session             │  → Server 自动销毁 Session
+│  → 临时节点删除                 │  → 临时节点删除
+└───────────────────────────────┘</code></pre></div>
+<h2 id="二会话超时sessiontimeout">二、会话超时（sessionTimeout）</h2>
+<p>创建 ZooKeeper 客户端时你需要指定一个 <code>sessionTimeout</code> 参数（单位毫秒）。这个参数<strong>非常重要</strong>，它控制：</p>]]></description></item></channel></rss>

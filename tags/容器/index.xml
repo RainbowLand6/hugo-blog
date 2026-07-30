@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>容器 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E5%AE%B9%E5%99%A8/</link><description>容器 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E5%AE%B9%E5%99%A8/" rel="self" type="application/rss+xml"/><item><title>Docker Linux 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="docker-linux-小白教程">Docker Linux 小白教程</h1>
+<p>这是一套以 Linux 服务器为例的 Docker 入门教程。主线使用 Ubuntu/Debian 的命令；CentOS、Rocky Linux、AlmaLinux 等系统的概念和 Docker 命令相同，只是安装软件时使用 <code>dnf</code> 或 <code>yum</code>。</p>]]></description></item><item><title>镜像与容器基础命令</title><link>https://blog.luhg.cn/03-%E9%95%9C%E5%83%8F%E4%B8%8E%E5%AE%B9%E5%99%A8%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/03-%E9%95%9C%E5%83%8F%E4%B8%8E%E5%AE%B9%E5%99%A8%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</guid><description><![CDATA[<h1 id="镜像与容器基础命令">镜像与容器基础命令</h1>
+<p>目标：能拉取镜像、启动容器、查看日志并安全停止容器。</p>
+<h2 id="1-拉取和查看镜像">1. 拉取和查看镜像</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker pull nginx:alpine
+</span></span><span class="line"><span class="cl">docker image ls</span></span></code></pre></div></div>
+<p>镜像名一般是：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">仓库/镜像名:标签
+</span></span><span class="line"><span class="cl">nginx:alpine</span></span></code></pre></div></div>
+<p>不要长期依赖 <code>latest</code>。明确写版本或稳定标签，部署结果才可重复。</p>]]></description></item></channel></rss>

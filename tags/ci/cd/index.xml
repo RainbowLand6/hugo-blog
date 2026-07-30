@@ -1,0 +1,35 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>CI/CD - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/ci/cd/</link><description>CI/CD - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/ci/cd/" rel="self" type="application/rss+xml"/><item><title>Jenkins 从入门到进阶教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="jenkins-从入门到进阶教程">Jenkins 从入门到进阶教程</h1>
+<p>这是一套给初学者的 Jenkins 实战教程。目标不是记住一堆按钮，而是能够自己搭建一条可维护的 CI/CD 流水线。</p>
+<h2 id="学完后你能做到什么">学完后你能做到什么</h2>
+<ul>
+<li>用 Docker 在本地启动 Jenkins。</li>
+<li>创建任务，在代码提交后自动构建和测试。</li>
+<li>编写并理解 Declarative Pipeline 风格的 <code>Jenkinsfile</code>。</li>
+<li>使用凭据安全地访问 Git 仓库、镜像仓库和服务器。</li>
+<li>构建 Docker 镜像，并部署到测试环境。</li>
+<li>排查常见失败，完成 Jenkins 的备份、恢复和日常维护。</li>
+</ul>
+<h2 id="阅读顺序">阅读顺序</h2>
+<h3 id="入门">入门</h3>
+<ol>
+<li>[[01-什么是Jenkins]]</li>
+<li>[[02-安装Jenkins（Docker方式）]]</li>
+<li>[[03-Jenkins首次配置与插件管理]]</li>
+<li>[[04-创建第一个自由风格任务]]</li>
+</ol>
+<h3 id="核心">核心</h3>
+<ol start="5">
+<li>[[05-理解Pipeline与Jenkinsfile]]</li>
+<li>[[06-编写第一个Declarative-Pipeline]]</li>
+<li>[[07-连接Git仓库与自动触发构建]]</li>
+<li>[[08-管理凭据与环境变量]]</li>
+</ol>
+<h3 id="实战与进阶">实战与进阶</h3>
+<ol start="9">
+<li>[[09-构建Java项目并发布制品]]</li>
+<li>[[10-构建Docker镜像并部署测试环境]]</li>
+<li>[[11-多分支流水线与共享库]]</li>
+<li>[[12-安全、备份、监控与故障排查]]</li>
+</ol>
+<h2 id="练习项目约定">练习项目约定</h2>
+<p>后续示例以 Maven Java 项目为例，目录大致如下：</p>]]></description></item></channel></rss>

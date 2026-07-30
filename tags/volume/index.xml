@@ -1,0 +1,4 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Volume - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/volume/</link><description>Volume - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/volume/" rel="self" type="application/rss+xml"/><item><title>数据卷与持久化</title><link>https://blog.luhg.cn/04-%E6%95%B0%E6%8D%AE%E5%8D%B7%E4%B8%8E%E6%8C%81%E4%B9%85%E5%8C%96/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/04-%E6%95%B0%E6%8D%AE%E5%8D%B7%E4%B8%8E%E6%8C%81%E4%B9%85%E5%8C%96/</guid><description><![CDATA[<h1 id="数据卷与持久化">数据卷与持久化</h1>
+<p>目标：理解容器文件系统为什么会丢数据，并能用 Volume 保存 MySQL、Redis 等服务数据。</p>
+<h2 id="1-容器删除后内部文件会怎样">1. 容器删除后，内部文件会怎样</h2>
+<p>容器自身可写层会随着容器删除而删除：</p>]]></description></item></channel></rss>

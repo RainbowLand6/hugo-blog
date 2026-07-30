@@ -1,0 +1,8 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Query DSL - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/query-dsl/</link><description>Query DSL - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/query-dsl/" rel="self" type="application/rss+xml"/><item><title>查询 DSL 入门</title><link>https://blog.luhg.cn/04-%E6%9F%A5%E8%AF%A2dsl%E5%85%A5%E9%97%A8/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/04-%E6%9F%A5%E8%AF%A2dsl%E5%85%A5%E9%97%A8/</guid><description><![CDATA[<h1 id="查询-dsl-入门">查询 DSL 入门</h1>
+<p>目标：掌握全文搜索、精确筛选、范围查询和组合查询。</p>
+<h2 id="1-先区分查询和过滤">1. 先区分查询和过滤</h2>
+<ul>
+<li><strong>查询（query）</strong>：关心相关度评分，例如搜索“蓝牙耳机”。</li>
+<li><strong>过滤（filter）</strong>：只关心是否符合条件，例如价格小于 500、品牌是 <code>SoundGo</code>。</li>
+</ul>
+<p>过滤通常不需要评分，适合放在 <code>bool.filter</code> 中。</p>]]></description></item></channel></rss>

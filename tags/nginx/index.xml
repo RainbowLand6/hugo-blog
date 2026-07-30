@@ -1,0 +1,11 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Nginx - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/nginx/</link><description>Nginx - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/nginx/" rel="self" type="application/rss+xml"/><item><title>Nginx常见报错排查手册</title><link>https://blog.luhg.cn/04-nginx%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E6%8E%92%E6%9F%A5%E6%89%8B%E5%86%8C/</link><pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/04-nginx%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E6%8E%92%E6%9F%A5%E6%89%8B%E5%86%8C/</guid><description><![CDATA[<h1 id="nginx-常见报错排查手册">Nginx 常见报错排查手册</h1>
+<p>这篇文章不讲太多原理，重点讲一件事：</p>
+<p><strong>Nginx 出问题时，你该先看什么、怎么判断、怎么处理。</strong></p>
+<p>很多人碰到报错时，第一反应是反复改配置。<br>
+但大多数时候，问题不是“多改几次就会好”，而是“先找对方向”。</p>]]></description></item><item><title>Nginx常见配置案例</title><link>https://blog.luhg.cn/02-nginx%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B/</link><pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-nginx%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B/</guid><description><![CDATA[<h1 id="nginx-常见配置案例">Nginx 常见配置案例</h1>
+<p>这篇文章适合接在《Nginx 从入门到进阶》后面看。</p>
+<p>上一篇解决的是“知道 Nginx 是什么、怎么用”。<br>
+这一篇解决的是“我现在要配一个场景，到底该怎么写”。</p>]]></description></item><item><title>Nginx从入门到进阶</title><link>https://blog.luhg.cn/01-nginx%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6/</link><pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-nginx%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6/</guid><description><![CDATA[<h1 id="nginx-从入门到进阶">Nginx 从入门到进阶</h1>
+<p>这篇文章面向小白。</p>
+<p>目标很明确：看完后，你至少要知道 Nginx 是什么、能做什么、怎么安装、怎么配置、怎么使用、怎么进阶、常见问题怎么排查。</p>
+<p>如果你以前没接触过 Nginx，也可以直接往下看。</p>]]></description></item></channel></rss>

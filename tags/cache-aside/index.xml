@@ -1,0 +1,12 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cache Aside - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/cache-aside/</link><description>Cache Aside - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/cache-aside/" rel="self" type="application/rss+xml"/><item><title>Java 实现缓存旁路模式</title><link>https://blog.luhg.cn/06-java%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E6%97%81%E8%B7%AF%E6%A8%A1%E5%BC%8F/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-java%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E6%97%81%E8%B7%AF%E6%A8%A1%E5%BC%8F/</guid><description><![CDATA[<h1 id="java-实现缓存旁路模式">Java 实现缓存旁路模式</h1>
+<p>目标：实现最常见的 Cache Aside（缓存旁路）模式。</p>
+<p>它的读取流程是：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">读 Redis -&gt; 命中则返回
+</span></span><span class="line"><span class="cl">        -&gt; 未命中则查数据库 -&gt; 写 Redis（带 TTL）-&gt; 返回</span></span></code></pre></div></div>
+<h2 id="1-示例代码">1. 示例代码</h2>
+<p>下面用 <code>Map</code> 模拟数据库，重点是流程：</p>]]></description></item></channel></rss>

@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>注册中心 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/</link><description>注册中心 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/" rel="self" type="application/rss+xml"/><item><title>用 Docker 启动 ZooKeeper 注册中心</title><link>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8zookeeper%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8zookeeper%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/</guid><description><![CDATA[<h1 id="用-docker-启动-zookeeper-注册中心">用 Docker 启动 ZooKeeper 注册中心</h1>
+<p>目标：启动一个本地 ZooKeeper，供后面的 Dubbo Provider 和 Consumer 注册、发现彼此。</p>
+<h2 id="1-创建-composeyaml">1. 创建 <code>compose.yaml</code></h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-yaml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">zookeeper</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">zookeeper:3.9</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">dubbo-zookeeper</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;2181:2181&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ZOO_4LW_COMMANDS_WHITELIST</span><span class="p">:</span><span class="w"> </span><span class="l">ruok,stat,mntr</span></span></span></code></pre></div></div>
+<p>这是单节点学习环境。生产环境至少需要 ZooKeeper 集群、高可用部署、权限控制和监控。</p>]]></description></item></channel></rss>

@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dockerfile - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/dockerfile/</link><description>Dockerfile - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/dockerfile/" rel="self" type="application/rss+xml"/><item><title>编写第一个 Dockerfile</title><link>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAdockerfile/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAdockerfile/</guid><description><![CDATA[<h1 id="编写第一个-dockerfile">编写第一个 Dockerfile</h1>
+<p>目标：把一个简单 Web 页面打包为自己的 Nginx 镜像，理解 Dockerfile 的基本指令。</p>
+<h2 id="1-创建项目文件">1. 创建项目文件</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">dockerfile-demo/
+</span></span><span class="line"><span class="cl">├── Dockerfile
+</span></span><span class="line"><span class="cl">└── index.html</span></span></code></pre></div></div>
+<p><code>index.html</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-html">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello from my Docker image<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span></span></span></code></pre></div></div>
+<p><code>Dockerfile</code>：</p>]]></description></item></channel></rss>

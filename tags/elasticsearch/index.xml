@@ -1,0 +1,138 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Elasticsearch - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/elasticsearch/</link><description>Elasticsearch - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/elasticsearch/" rel="self" type="application/rss+xml"/><item><title>Elasticsearch Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description>&lt;h1 id="elasticsearch-java-小白教程">Elasticsearch Java 小白教程&lt;/h1>
+&lt;p>这是一套面向 Java 初学者的 Elasticsearch 教程。你会从本地启动一个单节点服务开始，逐步学会索引设计、查询 DSL、Java 客户端、Spring Boot 集成和排障。&lt;/p></description></item><item><title>Elasticsearch 常见问题与排障清单</title><link>https://blog.luhg.cn/10-elasticsearch%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/10-elasticsearch%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</guid><description><![CDATA[<h1 id="elasticsearch-常见问题与排障清单">Elasticsearch 常见问题与排障清单</h1>
+<p>目标：搜索不到数据、查询慢或服务启动失败时，按顺序定位问题。</p>
+<h2 id="1-先确认服务可用">1. 先确认服务可用</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-powershell">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">localhost</span><span class="err">:</span><span class="mf">9200</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">localhost</span><span class="err">:</span><span class="mf">9200</span><span class="p">/</span><span class="n">_cluster</span><span class="p">/</span><span class="n">health</span></span></span></code></pre></div></div>
+<p>重点查看集群状态：</p>]]></description></item><item><title>Java 连接 Elasticsearch</title><link>https://blog.luhg.cn/05-java%E8%BF%9E%E6%8E%A5elasticsearch/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-java%E8%BF%9E%E6%8E%A5elasticsearch/</guid><description><![CDATA[<h1 id="java-连接-elasticsearch">Java 连接 Elasticsearch</h1>
+<p>目标：创建 Maven 项目并使用官方 Java API Client 连接本地 Elasticsearch。</p>
+<h2 id="1-pomxml">1. <code>pom.xml</code></h2>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0
+</span></span></span><span class="line"><span class="cl"><span class="s">         https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>elasticsearch-java-demo<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;properties&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;maven.compiler.release&gt;</span>17<span class="nt">&lt;/maven.compiler.release&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/properties&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;groupId&gt;</span>co.elastic.clients<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;artifactId&gt;</span>elasticsearch-java<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;version&gt;</span>9.3.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependencies&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/project&gt;</span></span></span></code></pre></div></div>
+<p>运行：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mvn compile</span></span></code></pre></div></div>
+<p>首次运行会下载依赖；看到 <code>BUILD SUCCESS</code> 即表示项目准备完成。</p>]]></description></item><item><title>Java 实现文档增删改查</title><link>https://blog.luhg.cn/06-java%E5%AE%9E%E7%8E%B0%E6%96%87%E6%A1%A3%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-java%E5%AE%9E%E7%8E%B0%E6%96%87%E6%A1%A3%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</guid><description><![CDATA[<h1 id="java-实现文档增删改查">Java 实现文档增删改查</h1>
+<p>目标：使用 Java API Client 写入、读取、搜索和删除商品文档。</p>
+<h2 id="1-定义商品对象">1. 定义商品对象</h2>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-java">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.es</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Product</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">brand</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">price</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Product</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Product</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">brand</span><span class="p">,</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">brand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">price</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>字段使用 <code>public</code> 只是为了让入门代码更短；真实项目通常使用私有字段、构造器和 getter/setter。</p>]]></description></item><item><title>Spring Boot 集成 Elasticsearch</title><link>https://blog.luhg.cn/09-spring-boot%E9%9B%86%E6%88%90elasticsearch/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-spring-boot%E9%9B%86%E6%88%90elasticsearch/</guid><description><![CDATA[<h1 id="spring-boot-集成-elasticsearch">Spring Boot 集成 Elasticsearch</h1>
+<p>目标：让 Spring Boot 管理 Elasticsearch 客户端，并在业务服务中执行搜索。</p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
+<p>在 Spring Boot 项目中加入：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-elasticsearch<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span></span></span></code></pre></div></div>
+<p>使用 Spring Boot 依赖管理时，不要随意再手工指定 Elasticsearch Java Client 版本，避免依赖版本不一致。</p>]]></description></item><item><title>阿里云 Elasticsearch 项目实战</title><link>https://blog.luhg.cn/11-%E9%98%BF%E9%87%8C%E4%BA%91elasticsearch%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/11-%E9%98%BF%E9%87%8C%E4%BA%91elasticsearch%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="阿里云-elasticsearch-项目实战">阿里云 Elasticsearch 项目实战&lt;/h1>
+&lt;p>目标：把商品搜索从本地 Docker 环境迁移到阿里云 Elasticsearch，并完成“数据库商品数据同步到搜索索引、提供搜索接口、上线检查”这条最小闭环。&lt;/p></description></item><item><title>查询 DSL 入门</title><link>https://blog.luhg.cn/04-%E6%9F%A5%E8%AF%A2dsl%E5%85%A5%E9%97%A8/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/04-%E6%9F%A5%E8%AF%A2dsl%E5%85%A5%E9%97%A8/</guid><description><![CDATA[<h1 id="查询-dsl-入门">查询 DSL 入门</h1>
+<p>目标：掌握全文搜索、精确筛选、范围查询和组合查询。</p>
+<h2 id="1-先区分查询和过滤">1. 先区分查询和过滤</h2>
+<ul>
+<li><strong>查询（query）</strong>：关心相关度评分，例如搜索“蓝牙耳机”。</li>
+<li><strong>过滤（filter）</strong>：只关心是否符合条件，例如价格小于 500、品牌是 <code>SoundGo</code>。</li>
+</ul>
+<p>过滤通常不需要评分，适合放在 <code>bool.filter</code> 中。</p>]]></description></item><item><title>分页、排序与高亮</title><link>https://blog.luhg.cn/07-%E5%88%86%E9%A1%B5%E6%8E%92%E5%BA%8F%E4%B8%8E%E9%AB%98%E4%BA%AE/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/07-%E5%88%86%E9%A1%B5%E6%8E%92%E5%BA%8F%E4%B8%8E%E9%AB%98%E4%BA%AE/</guid><description><![CDATA[<h1 id="分页排序与高亮">分页、排序与高亮</h1>
+<p>目标：让搜索接口能返回指定页、按价格排序，并在结果中标记命中的关键词。</p>
+<h2 id="1-基础分页">1. 基础分页</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-json">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/products/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;蓝牙&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>页码从 1 开始时：</p>]]></description></item><item><title>聚合查询与索引设计</title><link>https://blog.luhg.cn/08-%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2%E4%B8%8E%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/08-%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2%E4%B8%8E%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1/</guid><description><![CDATA[<h1 id="聚合查询与索引设计">聚合查询与索引设计</h1>
+<p>目标：按品牌统计商品数量，并掌握几个避免后期返工的 Mapping 原则。</p>
+<h2 id="1-什么是聚合">1. 什么是聚合</h2>
+<p>聚合不是返回每一条商品，而是返回统计结果。例如“每个品牌有多少商品”：</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-json">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/products/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;brand_count&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;brand&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p><code>size: 0</code> 表示不需要普通搜索结果，只需要统计。</p>]]></description></item><item><title>什么是 Elasticsearch</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFelasticsearch/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFelasticsearch/</guid><description><![CDATA[<h1 id="什么是-elasticsearch">什么是 Elasticsearch</h1>
+<p>Elasticsearch 是一个分布式搜索和分析引擎。它擅长从大量文本或结构化数据中快速找出匹配结果，也能做筛选、排序、聚合统计。</p>
+<h2 id="1-为什么数据库查询还不够">1. 为什么数据库查询还不够</h2>
+<p>数据库很擅长按主键查订单、做事务、维护业务数据。但当需求变成：</p>]]></description></item></channel></rss>

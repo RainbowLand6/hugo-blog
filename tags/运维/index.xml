@@ -1,4 +1,57 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>运维 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E8%BF%90%E7%BB%B4/</link><description>运维 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 09 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E8%BF%90%E7%BB%B4/" rel="self" type="application/rss+xml"/><item><title>1panel安装</title><link>https://blog.luhg.cn/1panel%E5%AE%89%E8%A3%85/</link><pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/1panel%E5%AE%89%E8%A3%85/</guid><description><![CDATA[<p>文档链接：https://1panel.cn/docs/installation/online_installation/</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>运维 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E8%BF%90%E7%BB%B4/</link><description>运维 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E8%BF%90%E7%BB%B4/" rel="self" type="application/rss+xml"/><item><title>Elasticsearch 常见问题与排障清单</title><link>https://blog.luhg.cn/10-elasticsearch%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/10-elasticsearch%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</guid><description><![CDATA[<h1 id="elasticsearch-常见问题与排障清单">Elasticsearch 常见问题与排障清单</h1>
+<p>目标：搜索不到数据、查询慢或服务启动失败时，按顺序定位问题。</p>
+<h2 id="1-先确认服务可用">1. 先确认服务可用</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-powershell">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">localhost</span><span class="err">:</span><span class="mf">9200</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">localhost</span><span class="err">:</span><span class="mf">9200</span><span class="p">/</span><span class="n">_cluster</span><span class="p">/</span><span class="n">health</span></span></span></code></pre></div></div>
+<p>重点查看集群状态：</p>]]></description></item><item><title>Kafka 常见问题与排障清单</title><link>https://blog.luhg.cn/10-kafka%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/10-kafka%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</guid><description><![CDATA[<h1 id="kafka-常见问题与排障清单">Kafka 常见问题与排障清单</h1>
+<p>目标：消息“没了”或“没被消费”时，按顺序缩小问题范围，而不是先改一堆参数。</p>
+<h2 id="1-先画出链路">1. 先画出链路</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">生产者 -&gt; Kafka Broker -&gt; Topic/Partition -&gt; 消费者组 -&gt; 业务处理 -&gt; 提交位移</span></span></code></pre></div></div>
+<p>每次排障先回答：问题卡在哪一段？</p>]]></description></item><item><title>Redis 常见问题与排障清单</title><link>https://blog.luhg.cn/10-redis%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/10-redis%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</guid><description><![CDATA[<h1 id="redis-常见问题与排障清单">Redis 常见问题与排障清单</h1>
+<p>目标：Redis 访问慢、连接失败或内存异常时，先用可验证的信息定位问题。</p>
+<h2 id="1-本地环境先确认服务是否存活">1. 本地环境先确认服务是否存活</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker compose ps
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it redis-local redis-cli PING</span></span></code></pre></div></div>
+<p>返回 <code>PONG</code> 才说明 Redis 本身可以正常响应。</p>]]></description></item><item><title>日志、资源与日常运维</title><link>https://blog.luhg.cn/09-%E6%97%A5%E5%BF%97%E8%B5%84%E6%BA%90%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-%E6%97%A5%E5%BF%97%E8%B5%84%E6%BA%90%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4/</guid><description><![CDATA[<h1 id="日志资源与日常运维">日志、资源与日常运维</h1>
+<p>目标：知道服务异常时看什么，并避免容器无限占用 CPU、内存和磁盘。</p>
+<h2 id="1-查看日志">1. 查看日志</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker logs --tail <span class="m">200</span> demo-app
+</span></span><span class="line"><span class="cl">docker logs -f demo-app</span></span></code></pre></div></div>
+<p>Docker 默认收集容器标准输出和标准错误。Java 应用应把主要日志输出到控制台，再由 Docker 或日志平台统一采集；不要只写进容器内部文件。</p>]]></description></item><item><title>09-ZooKeeper常见问题与排障手册</title><link>https://blog.luhg.cn/09-zookeeper%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C/</link><pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-zookeeper%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C/</guid><description><![CDATA[<h2 id="一开篇出了问题先看哪里">一、开篇：出了问题先看哪里？</h2>
+<p>ZooKeeper 出问题时别慌，按这个顺序排查：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>1. 看状态 → zkServer.sh status
+2. 看日志 → logs/zookeeper--server-*.out
+3. 看端口 → netstat -tlnp | grep 2181
+4. 看内存 → jstat -gcutil &lt;PID&gt; 1000
+5. 看磁盘 → df -h</code></pre></div>
+<h2 id="二常见-keeperexception-错误码速查">二、常见 KeeperException 错误码速查</h2>
+<p>当 Java 客户端报 <code>KeeperException</code> 时，首先要看错误码：</p>]]></description></item><item><title>Kafka消息卡在"已发送"的排查全过程</title><link>https://blog.luhg.cn/kafka%E6%B6%88%E6%81%AF%E5%8D%A1%E5%9C%A8%E5%B7%B2%E5%8F%91%E9%80%81%E7%9A%84%E6%8E%92%E6%9F%A5%E5%85%A8%E8%BF%87%E7%A8%8B/</link><pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/kafka%E6%B6%88%E6%81%AF%E5%8D%A1%E5%9C%A8%E5%B7%B2%E5%8F%91%E9%80%81%E7%9A%84%E6%8E%92%E6%9F%A5%E5%85%A8%E8%BF%87%E7%A8%8B/</guid><description><![CDATA[<h2 id="问题现象">问题现象</h2>
+<p>测试环境业务消息状态表中，大量消息长时间停留在&quot;已发送&quot;状态，重发次数为 0，一直没有被标记为&quot;已消费&quot;。涉及的 topic <code>erp.order.insert</code> 。</p>]]></description></item><item><title>1panel安装</title><link>https://blog.luhg.cn/1panel%E5%AE%89%E8%A3%85/</link><pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/1panel%E5%AE%89%E8%A3%85/</guid><description><![CDATA[<p>文档链接：https://1panel.cn/docs/installation/online_installation/</p>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>

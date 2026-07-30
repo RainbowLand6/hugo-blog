@@ -1,0 +1,8 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>ZkCli - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/zkcli/</link><description>ZkCli - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 23 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/zkcli/" rel="self" type="application/rss+xml"/><item><title>02-ZooKeeper单机安装与基本操作</title><link>https://blog.luhg.cn/02-zookeeper%E5%8D%95%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</link><pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-zookeeper%E5%8D%95%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</guid><description><![CDATA[<h2 id="一开始之前确认环境">一、开始之前：确认环境</h2>
+<p>本教程以 <strong>Linux（CentOS 7 / Ubuntu 20.04）</strong> 为主，最后也会给 Windows 的简要说明。你需要：</p>
+<ul>
+<li>JDK 8 或更高版本（ZooKeeper 是用 Java 写的）</li>
+<li>一台能联网的机器（虚拟机也行）</li>
+<li>基本的 Linux 命令操作能力</li>
+</ul>
+<p><strong>成功标志</strong>：确认 JDK 已安装。</p>]]></description></item></channel></rss>

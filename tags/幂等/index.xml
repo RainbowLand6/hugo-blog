@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>幂等 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E5%B9%82%E7%AD%89/</link><description>幂等 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E5%B9%82%E7%AD%89/" rel="self" type="application/rss+xml"/><item><title>超时、重试、异常与幂等</title><link>https://blog.luhg.cn/08-%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E5%BC%82%E5%B8%B8%E4%B8%8E%E5%B9%82%E7%AD%89/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/08-%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E5%BC%82%E5%B8%B8%E4%B8%8E%E5%B9%82%E7%AD%89/</guid><description><![CDATA[<h1 id="超时重试异常与幂等">超时、重试、异常与幂等</h1>
+<p>目标：让 Dubbo 调用失败时行为可预期，避免一次网络抖动变成重复扣款或雪崩。</p>
+<h2 id="1-超时不是服务一定没执行">1. 超时不是“服务一定没执行”</h2>
+<p>Consumer 等待 1 秒后超时，可能有多种情况：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">请求没到 Provider
+</span></span><span class="line"><span class="cl">Provider 收到但还没开始执行
+</span></span><span class="line"><span class="cl">Provider 已执行成功，但响应在网络中丢失或返回太慢</span></span></code></pre></div></div>
+<p>所以“超时后再试一次”可能造成写操作执行两次。</p>]]></description></item></channel></rss>

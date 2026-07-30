@@ -1,4 +1,25 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Git - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/git/</link><description>Git - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/git/" rel="self" type="application/rss+xml"/><item><title>15 · Git 基础与 SSH 配置</title><link>https://blog.luhg.cn/15-git%E5%9F%BA%E7%A1%80%E4%B8%8Essh%E9%85%8D%E7%BD%AE/</link><pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/15-git%E5%9F%BA%E7%A1%80%E4%B8%8Essh%E9%85%8D%E7%BD%AE/</guid><description><![CDATA[<h1 id="15--git-基础与-ssh-配置">15 · Git 基础与 SSH 配置</h1>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Git - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/git/</link><description>Git - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/git/" rel="self" type="application/rss+xml"/><item><title>07-连接 Git 仓库与自动触发构建</title><link>https://blog.luhg.cn/07-%E8%BF%9E%E6%8E%A5git%E4%BB%93%E5%BA%93%E4%B8%8E%E8%87%AA%E5%8A%A8%E8%A7%A6%E5%8F%91%E6%9E%84%E5%BB%BA/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/07-%E8%BF%9E%E6%8E%A5git%E4%BB%93%E5%BA%93%E4%B8%8E%E8%87%AA%E5%8A%A8%E8%A7%A6%E5%8F%91%E6%9E%84%E5%BB%BA/</guid><description><![CDATA[<h1 id="07-连接-git-仓库与自动触发构建">07-连接 Git 仓库与自动触发构建</h1>
+<p>从这一章开始，让 Jenkins 从 Git 仓库读取 <code>Jenkinsfile</code>。这样构建流程和项目代码会始终保持同步。</p>
+<h2 id="准备仓库">准备仓库</h2>
+<p>在项目根目录创建 <code>Jenkinsfile</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-groovy">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">pipeline</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">agent</span> <span class="n">any</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">stages</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;检查代码&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;git rev-parse --short HEAD&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;echo &#34;正在构建分支：${BRANCH_NAME:-main}&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div></div>
+<p>提交并推送：</p>]]></description></item><item><title>15 · Git 基础与 SSH 配置</title><link>https://blog.luhg.cn/15-git%E5%9F%BA%E7%A1%80%E4%B8%8Essh%E9%85%8D%E7%BD%AE/</link><pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/15-git%E5%9F%BA%E7%A1%80%E4%B8%8Essh%E9%85%8D%E7%BD%AE/</guid><description><![CDATA[<h1 id="15--git-基础与-ssh-配置">15 · Git 基础与 SSH 配置</h1>
 <blockquote>
 <p><strong>这篇的目标</strong>：在本地安装并配置 Git、生成 SSH 密钥并绑定到 GitHub、学会基本的 Git 命令让本地和远程仓库同步。</p>
 </blockquote>

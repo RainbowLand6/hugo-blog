@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>网络 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E7%BD%91%E7%BB%9C/</link><description>网络 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml"/><item><title>端口与容器网络</title><link>https://blog.luhg.cn/05-%E7%AB%AF%E5%8F%A3%E4%B8%8E%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-%E7%AB%AF%E5%8F%A3%E4%B8%8E%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C/</guid><description><![CDATA[<h1 id="端口与容器网络">端口与容器网络</h1>
+<p>目标：分清“容器端口”“主机端口”和“容器服务名”，避免把数据库错误暴露到公网。</p>
+<h2 id="1--p-的含义">1. <code>-p</code> 的含义</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -p 8080:80 nginx:alpine</span></span></code></pre></div></div>
+<p>格式是：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">主机端口:容器端口</span></span></code></pre></div></div>
+<p>访问 Linux 服务器的 <code>8080</code>，请求会被转发到容器里的 <code>80</code>。</p>]]></description></item></channel></rss>

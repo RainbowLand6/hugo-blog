@@ -1,0 +1,203 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dubbo - 分类 - Luhong's Blog</title><link>https://blog.luhg.cn/categories/dubbo/</link><description>Dubbo - 分类 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/categories/dubbo/" rel="self" type="application/rss+xml"/><item><title>Dubbo Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="dubbo-java-小白教程">Dubbo Java 小白教程</h1>
+<p>这是一套面向 Java 初学者的 Dubbo 教程。主线使用 Spring Boot、Dubbo 3.3.0 和 ZooKeeper 注册中心，完成一个“订单服务调用用户服务”的 RPC 项目。</p>
+<p>本系列约定：</p>
+<ul>
+<li>JDK 17</li>
+<li>Maven 3.9+</li>
+<li>Spring Boot 3.x</li>
+<li>Dubbo 3.3.0</li>
+<li>ZooKeeper 3.9+</li>
+<li>Docker Desktop</li>
+</ul>
+<h2 id="阅读顺序">阅读顺序</h2>
+<h3 id="入门">入门</h3>
+<ol>
+<li>[[01-什么是Dubbo]]</li>
+<li>[[02-用Docker启动ZooKeeper注册中心]]</li>
+<li>[[03-创建Dubbo多模块项目]]</li>
+<li>[[04-定义公共接口与DTO]]</li>
+</ol>
+<h3 id="跑通-rpc-调用">跑通 RPC 调用</h3>
+<ol start="5">
+<li>[[05-编写Dubbo服务提供者]]</li>
+<li>[[06-编写Dubbo服务消费者]]</li>
+<li>[[07-注册中心与负载均衡]]</li>
+<li>[[08-超时重试异常与幂等]]</li>
+</ol>
+<h3 id="部署与排障">部署与排障</h3>
+<ol start="9">
+<li>[[09-Dubbo项目部署与配置管理]]</li>
+<li>[[10-Dubbo常见问题与排障清单]]</li>
+</ol>
+<h2 id="项目结构">项目结构</h2>
+<p>教程中的示例使用三个 Maven 模块：</p>]]></description></item><item><title>Dubbo 常见问题与排障清单</title><link>https://blog.luhg.cn/10-dubbo%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/10-dubbo%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C%E6%B8%85%E5%8D%95/</guid><description><![CDATA[<h1 id="dubbo-常见问题与排障清单">Dubbo 常见问题与排障清单</h1>
+<p>目标：Consumer 无法调用 Provider、调用超时或版本不匹配时，能按依赖链定位问题。</p>
+<h2 id="1-先画出依赖链">1. 先画出依赖链</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Consumer -&gt; ZooKeeper -&gt; Provider 注册信息 -&gt; Provider 网络地址 -&gt; Provider 业务实现</span></span></code></pre></div></div>
+<p>任何一段不通都会表现为“Dubbo 调用失败”。不要一开始就修改重试次数。</p>]]></description></item><item><title>Dubbo 项目部署与配置管理</title><link>https://blog.luhg.cn/09-dubbo%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-dubbo%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/</guid><description><![CDATA[<h1 id="dubbo-项目部署与配置管理">Dubbo 项目部署与配置管理</h1>
+<p>目标：把 Provider、Consumer 和 ZooKeeper 放进可部署的环境，并避免把网络地址和密码写死在代码中。</p>
+<h2 id="1-配置应来自环境">1. 配置应来自环境</h2>
+<p><code>application.yml</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-yaml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dubbo</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">application</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">${DUBBO_APPLICATION_NAME}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">registry</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l">${DUBBO_REGISTRY_ADDRESS}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l">${DUBBO_PROTOCOL_PORT:20880}</span></span></span></code></pre></div></div>
+<p>部署时注入：</p>]]></description></item><item><title>编写 Dubbo 服务提供者</title><link>https://blog.luhg.cn/05-%E7%BC%96%E5%86%99dubbo%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E8%80%85/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-%E7%BC%96%E5%86%99dubbo%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E8%80%85/</guid><description><![CDATA[<h1 id="编写-dubbo-服务提供者">编写 Dubbo 服务提供者</h1>
+<p>目标：让 <code>user-provider</code> 把 <code>UserService</code> 注册到 ZooKeeper。</p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
+<p><code>user-provider/pom.xml</code> 的核心依赖：</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>dubbo-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.apache.dubbo<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>dubbo-spring-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>3.3.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.apache.dubbo<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>dubbo-registry-zookeeper<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>3.3.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependencies&gt;</span></span></span></code></pre></div></div>
+<p>项目还需要正常的 Spring Boot 依赖和插件配置。这里仅展示 Dubbo 相关部分。</p>]]></description></item><item><title>编写 Dubbo 服务消费者</title><link>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99dubbo%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%E8%80%85/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99dubbo%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%E8%80%85/</guid><description><![CDATA[<h1 id="编写-dubbo-服务消费者">编写 Dubbo 服务消费者</h1>
+<p>目标：让 <code>order-consumer</code> 从 ZooKeeper 发现 <code>UserService</code>，并在订单逻辑中调用它。</p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
+<p>消费者的依赖与 Provider 类似：依赖 <code>dubbo-api</code>、<code>dubbo-spring-boot-starter</code> 和 <code>dubbo-registry-zookeeper</code>。Consumer 不需要依赖 Provider 的实现模块。</p>]]></description></item><item><title>超时、重试、异常与幂等</title><link>https://blog.luhg.cn/08-%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E5%BC%82%E5%B8%B8%E4%B8%8E%E5%B9%82%E7%AD%89/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/08-%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E5%BC%82%E5%B8%B8%E4%B8%8E%E5%B9%82%E7%AD%89/</guid><description><![CDATA[<h1 id="超时重试异常与幂等">超时、重试、异常与幂等</h1>
+<p>目标：让 Dubbo 调用失败时行为可预期，避免一次网络抖动变成重复扣款或雪崩。</p>
+<h2 id="1-超时不是服务一定没执行">1. 超时不是“服务一定没执行”</h2>
+<p>Consumer 等待 1 秒后超时，可能有多种情况：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">请求没到 Provider
+</span></span><span class="line"><span class="cl">Provider 收到但还没开始执行
+</span></span><span class="line"><span class="cl">Provider 已执行成功，但响应在网络中丢失或返回太慢</span></span></code></pre></div></div>
+<p>所以“超时后再试一次”可能造成写操作执行两次。</p>]]></description></item><item><title>创建 Dubbo 多模块项目</title><link>https://blog.luhg.cn/03-%E5%88%9B%E5%BB%BAdubbo%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/03-%E5%88%9B%E5%BB%BAdubbo%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE/</guid><description><![CDATA[<h1 id="创建-dubbo-多模块项目">创建 Dubbo 多模块项目</h1>
+<p>目标：建立一个父项目和三个模块，分离接口契约、提供者和消费者。</p>
+<h2 id="1-目录结构">1. 目录结构</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">dubbo-demo/
+</span></span><span class="line"><span class="cl">├── pom.xml
+</span></span><span class="line"><span class="cl">├── dubbo-api/
+</span></span><span class="line"><span class="cl">│   └── pom.xml
+</span></span><span class="line"><span class="cl">├── user-provider/
+</span></span><span class="line"><span class="cl">│   └── pom.xml
+</span></span><span class="line"><span class="cl">└── order-consumer/
+</span></span><span class="line"><span class="cl">    └── pom.xml</span></span></code></pre></div></div>
+<h2 id="2-父项目-pomxml">2. 父项目 <code>pom.xml</code></h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0
+</span></span></span><span class="line"><span class="cl"><span class="s">         https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>dubbo-demo<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;modules&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;module&gt;</span>dubbo-api<span class="nt">&lt;/module&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;module&gt;</span>user-provider<span class="nt">&lt;/module&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;module&gt;</span>order-consumer<span class="nt">&lt;/module&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/modules&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;properties&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;java.version&gt;</span>17<span class="nt">&lt;/java.version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;spring-boot.version&gt;</span>3.3.0<span class="nt">&lt;/spring-boot.version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;dubbo.version&gt;</span>3.3.0<span class="nt">&lt;/dubbo.version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/properties&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/project&gt;</span></span></span></code></pre></div></div>
+<p>这是用于教学的简化父 POM。真实项目通常还会使用 Spring Boot 的 BOM、统一插件版本、代码检查和依赖收敛规则。</p>]]></description></item><item><title>定义公共接口与 DTO</title><link>https://blog.luhg.cn/04-%E5%AE%9A%E4%B9%89%E5%85%AC%E5%85%B1%E6%8E%A5%E5%8F%A3%E4%B8%8Edto/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/04-%E5%AE%9A%E4%B9%89%E5%85%AC%E5%85%B1%E6%8E%A5%E5%8F%A3%E4%B8%8Edto/</guid><description><![CDATA[<h1 id="定义公共接口与-dto">定义公共接口与 DTO</h1>
+<p>目标：在 <code>dubbo-api</code> 中定义用户查询接口，并让传输对象可序列化。</p>
+<h2 id="1-定义-dto">1. 定义 DTO</h2>
+<p><code>UserProfile.java</code>：</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-java">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.dubbo.api</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.Serializable</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserProfile</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nickname</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">level</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserProfile</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserProfile</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nickname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">level</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nickname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nickname</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">level</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">getId</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getNickname</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nickname</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getLevel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">level</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>DTO 是跨服务传输的数据对象。它不应直接使用数据库实体，否则数据库字段、懒加载行为和内部信息会泄露到 RPC 契约中。</p>]]></description></item><item><title>什么是 Dubbo</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFdubbo/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFdubbo/</guid><description><![CDATA[<h1 id="什么是-dubbo">什么是 Dubbo</h1>
+<p>Dubbo 是一个 Java RPC 框架。它让一个服务能够像调用本地方法一样，调用另一个服务提供的方法。</p>
+<h2 id="1-什么是-rpc">1. 什么是 RPC</h2>
+<p>RPC 是 Remote Procedure Call，意思是远程过程调用。</p>
+<p>订单服务需要查询用户信息时，传统 HTTP 调用可能是：</p>]]></description></item><item><title>用 Docker 启动 ZooKeeper 注册中心</title><link>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8zookeeper%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8zookeeper%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/</guid><description><![CDATA[<h1 id="用-docker-启动-zookeeper-注册中心">用 Docker 启动 ZooKeeper 注册中心</h1>
+<p>目标：启动一个本地 ZooKeeper，供后面的 Dubbo Provider 和 Consumer 注册、发现彼此。</p>
+<h2 id="1-创建-composeyaml">1. 创建 <code>compose.yaml</code></h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-yaml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">zookeeper</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">zookeeper:3.9</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">dubbo-zookeeper</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;2181:2181&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ZOO_4LW_COMMANDS_WHITELIST</span><span class="p">:</span><span class="w"> </span><span class="l">ruok,stat,mntr</span></span></span></code></pre></div></div>
+<p>这是单节点学习环境。生产环境至少需要 ZooKeeper 集群、高可用部署、权限控制和监控。</p>]]></description></item></channel></rss>

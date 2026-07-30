@@ -1,9 +1,65 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>入门 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E5%85%A5%E9%97%A8/</link><description>入门 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E5%85%A5%E9%97%A8/" rel="self" type="application/rss+xml"/><item><title>01 · 初识GitHub</title><link>https://blog.luhg.cn/01-%E5%88%9D%E8%AF%86github/</link><pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E5%88%9D%E8%AF%86github/</guid><description><![CDATA[<h1 id="01--初识github">01 · 初识GitHub</h1>
-<blockquote>
-<p><strong>这篇的目标</strong>：注册好账号、看懂界面每一个按钮是干什么的、知道 GitHub 上的核心名词是什么意思。</p>
-</blockquote>
-<hr>
-<h2 id="1-github-到底是什么">1. GitHub 到底是什么？</h2>
-<p>用一句话说清楚：</p>
-<blockquote>
-<p><strong>GitHub 是一个&quot;代码托管平台&quot;</strong>——你可以在上面存代码，别人可以看你的代码、下载你的代码、帮你改你的代码。</p>]]></description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>入门 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E5%85%A5%E9%97%A8/</link><description>入门 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E5%85%A5%E9%97%A8/" rel="self" type="application/rss+xml"/><item><title>什么是 Docker</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFdocker/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFdocker/</guid><description><![CDATA[<h1 id="什么是-docker">什么是 Docker</h1>
+<p>Docker 是一个把应用和运行环境一起打包、一起运行的工具。它解决的是“我电脑上能跑，服务器上却跑不起来”的一类问题。</p>
+<h2 id="1-传统部署的问题">1. 传统部署的问题</h2>
+<p>部署一个 Java 服务，通常要处理：</p>]]></description></item><item><title>什么是 Dubbo</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFdubbo/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFdubbo/</guid><description><![CDATA[<h1 id="什么是-dubbo">什么是 Dubbo</h1>
+<p>Dubbo 是一个 Java RPC 框架。它让一个服务能够像调用本地方法一样，调用另一个服务提供的方法。</p>
+<h2 id="1-什么是-rpc">1. 什么是 RPC</h2>
+<p>RPC 是 Remote Procedure Call，意思是远程过程调用。</p>
+<p>订单服务需要查询用户信息时，传统 HTTP 调用可能是：</p>]]></description></item><item><title>什么是 Elasticsearch</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFelasticsearch/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFelasticsearch/</guid><description><![CDATA[<h1 id="什么是-elasticsearch">什么是 Elasticsearch</h1>
+<p>Elasticsearch 是一个分布式搜索和分析引擎。它擅长从大量文本或结构化数据中快速找出匹配结果，也能做筛选、排序、聚合统计。</p>
+<h2 id="1-为什么数据库查询还不够">1. 为什么数据库查询还不够</h2>
+<p>数据库很擅长按主键查订单、做事务、维护业务数据。但当需求变成：</p>]]></description></item><item><title>什么是 Kafka</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFkafka/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFkafka/</guid><description><![CDATA[<h1 id="什么是-kafka">什么是 Kafka</h1>
+<p>Kafka 是一个用于传递消息的系统。一个程序把消息写进去，另一个或多个程序稍后读出来处理。</p>
+<p>拿电商下单举例：用户支付成功后，订单服务不必亲自做库存扣减、发优惠券、发通知。它只需要发送一条“订单已支付”消息；库存、营销、通知等服务各自订阅并处理。这种方式让服务之间不必互相等待。</p>]]></description></item><item><title>什么是 Redis</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFredis/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFredis/</guid><description><![CDATA[<h1 id="什么是-redis">什么是 Redis</h1>
+<p>Redis 是一个把数据主要放在内存中的键值数据库。因为读写内存很快，它经常用来做缓存，也能做计数器、排行榜、会话存储和消息队列。</p>
+<h2 id="1-为什么需要缓存">1. 为什么需要缓存</h2>
+<p>假设商品详情每次都从数据库查询：</p>]]></description></item><item><title>用 Docker 启动 Elasticsearch</title><link>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8elasticsearch/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8elasticsearch/</guid><description><![CDATA[<h1 id="用-docker-启动-elasticsearch">用 Docker 启动 Elasticsearch</h1>
+<p>目标：启动一个仅供本机学习的单节点 Elasticsearch，并用 REST API 验证服务。</p>
+<h2 id="1-创建-composeyaml">1. 创建 <code>compose.yaml</code></h2>
+<p>新建空目录，创建如下文件：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-yaml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.elastic.co/elasticsearch/elasticsearch:9.3.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">es-local</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">discovery.type=single-node</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">xpack.security.enabled=false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">xpack.security.http.ssl.enabled=false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ES_JAVA_OPTS=-Xms512m -Xmx512m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;9200:9200&#34;</span></span></span></code></pre></div></div>
+<p>这份配置关闭认证和 HTTPS，只为了避免本地入门被证书和账号配置打断。生产环境必须使用 Elasticsearch 默认启用的安全能力，并限制网络访问。</p>]]></description></item><item><title>用 Docker 启动 Kafka 并发送第一条消息</title><link>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8kafka%E5%B9%B6%E5%8F%91%E9%80%81%E7%AC%AC%E4%B8%80%E6%9D%A1%E6%B6%88%E6%81%AF/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8kafka%E5%B9%B6%E5%8F%91%E9%80%81%E7%AC%AC%E4%B8%80%E6%9D%A1%E6%B6%88%E6%81%AF/</guid><description><![CDATA[<h1 id="用-docker-启动-kafka-并发送第一条消息">用 Docker 启动 Kafka 并发送第一条消息</h1>
+<p>目标：本篇结束时，本机的 Kafka 可以启动，并能在终端里发送和接收一条消息。</p>
+<h2 id="1-准备-docker">1. 准备 Docker</h2>
+<p>安装并启动 Docker Desktop 后，在终端执行：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker version
+</span></span><span class="line"><span class="cl">docker compose version</span></span></code></pre></div></div>
+<p>两条命令都能显示版本信息，说明环境可用。</p>]]></description></item><item><title>用 Docker 启动 Redis 并完成第一次操作</title><link>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8redis%E5%B9%B6%E5%AE%8C%E6%88%90%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%93%8D%E4%BD%9C/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-%E7%94%A8docker%E5%90%AF%E5%8A%A8redis%E5%B9%B6%E5%AE%8C%E6%88%90%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%93%8D%E4%BD%9C/</guid><description><![CDATA[<h1 id="用-docker-启动-redis-并完成第一次操作">用 Docker 启动 Redis 并完成第一次操作</h1>
+<p>目标：本篇结束时，本机有一个运行中的 Redis，并能用命令读写数据。</p>
+<h2 id="1-创建-composeyaml">1. 创建 <code>compose.yaml</code></h2>
+<p>新建一个空目录，在其中创建：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-yaml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">redis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">redis:7-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">redis-local</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;6379:6379&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">redis-server --appendonly yes</span></span></span></code></pre></div></div>
+<p><code>--appendonly yes</code> 会开启 AOF 持久化，适合本地练习。它不等同于生产备份方案，但能避免容器意外重启后所有练习数据立即消失。</p>]]></description></item><item><title>04-创建第一个自由风格任务</title><link>https://blog.luhg.cn/04-%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%87%AA%E7%94%B1%E9%A3%8E%E6%A0%BC%E4%BB%BB%E5%8A%A1/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/04-%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%87%AA%E7%94%B1%E9%A3%8E%E6%A0%BC%E4%BB%BB%E5%8A%A1/</guid><description>&lt;h1 id="04-创建第一个自由风格任务">04-创建第一个自由风格任务&lt;/h1>
+&lt;p>自由风格任务（Freestyle project）适合认识 Jenkins 的基本流程。真实项目更推荐 Pipeline，但先做一次自由风格任务，能帮助你理解构建记录、控制台日志和工作区。&lt;/p></description></item><item><title>01-什么是ZooKeeper？从动物园管理员到分布式协调引擎</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFzookeeper/</link><pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFzookeeper/</guid><description><![CDATA[<h2 id="一一句话告诉你-zookeeper-是什么">一、一句话告诉你 ZooKeeper 是什么</h2>
+<p>ZooKeeper 是一个<strong>开源的分布式协调服务</strong>。你可以把它想象成一个分布式系统的&quot;交通指挥中心&quot;——各节点通过它来同步状态、选举领导、管理配置，从而让一群各自为政的机器像一支训练有素的队伍一样协作。</p>]]></description></item></channel></rss>

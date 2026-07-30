@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>性能 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E6%80%A7%E8%83%BD/</link><description>性能 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 23 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E6%80%A7%E8%83%BD/" rel="self" type="application/rss+xml"/><item><title>09-ZooKeeper常见问题与排障手册</title><link>https://blog.luhg.cn/09-zookeeper%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C/</link><pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-zookeeper%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%9A%9C/</guid><description><![CDATA[<h2 id="一开篇出了问题先看哪里">一、开篇：出了问题先看哪里？</h2>
+<p>ZooKeeper 出问题时别慌，按这个顺序排查：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>1. 看状态 → zkServer.sh status
+2. 看日志 → logs/zookeeper--server-*.out
+3. 看端口 → netstat -tlnp | grep 2181
+4. 看内存 → jstat -gcutil &lt;PID&gt; 1000
+5. 看磁盘 → df -h</code></pre></div>
+<h2 id="二常见-keeperexception-错误码速查">二、常见 KeeperException 错误码速查</h2>
+<p>当 Java 客户端报 <code>KeeperException</code> 时，首先要看错误码：</p>]]></description></item></channel></rss>

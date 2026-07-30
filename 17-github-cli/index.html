@@ -26,7 +26,7 @@
 <span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
 <span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>gh auth login</span></span></code></pre></div></div><p>按照提示选择：</p><ol><li>登录方式：GitHub.com</li><li>协议：HTTPS 或 SSH</li><li>认证方式：浏览器登录（推荐）或 Token</li><li>是否添加 Git 凭据助手：推荐 Yes</li></ol><p>完成后：</p><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
 <span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
-<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>gh auth status</span></span></code></pre></div></div><p>✅ 看到 <code>Logged in to github.com account</code> 说明成功。</p><hr><h2 id=4-常用命令>4. 常用命令</h2><h3 id=仓库操作>仓库操作</h3><div class="code-block code-line-numbers" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>gh auth status</span></span></code></pre></div></div><p>✅ 看到 <code>Logged in to github.com account</code> 说明成功。</p><hr><h2 id=4-常用命令>4. 常用命令</h2><h3 id=仓库操作>仓库操作</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
 <span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
 <span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 克隆仓库</span>
 </span></span><span class=line><span class=cl>gh repo clone 用户名/仓库名
@@ -38,7 +38,7 @@
 </span></span><span class=line><span class=cl>gh repo view 用户名/仓库名 --web
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># 查看仓库信息</span>
-</span></span><span class=line><span class=cl>gh repo view 用户名/仓库名</span></span></code></pre></div></div><h3 id=issue-操作>Issue 操作</h3><div class="code-block code-line-numbers" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+</span></span><span class=line><span class=cl>gh repo view 用户名/仓库名</span></span></code></pre></div></div><h3 id=issue-操作>Issue 操作</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
 <span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
 <span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 创建 Issue</span>
 </span></span><span class=line><span class=cl>gh issue create --title <span class=s2>&#34;标题&#34;</span> --body <span class=s2>&#34;描述&#34;</span>
@@ -50,7 +50,7 @@
 </span></span><span class=line><span class=cl>gh issue view 编号
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># 关闭 Issue</span>
-</span></span><span class=line><span class=cl>gh issue close 编号</span></span></code></pre></div></div><h3 id=pull-request-操作>Pull Request 操作</h3><div class="code-block code-line-numbers" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+</span></span><span class=line><span class=cl>gh issue close 编号</span></span></code></pre></div></div><h3 id=pull-request-操作>Pull Request 操作</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
 <span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
 <span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 创建 PR</span>
 </span></span><span class=line><span class=cl>gh pr create --title <span class=s2>&#34;标题&#34;</span> --body <span class=s2>&#34;描述&#34;</span>
@@ -65,7 +65,7 @@
 </span></span><span class=line><span class=cl>gh pr review 编号 --approve
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># 合并 PR</span>
-</span></span><span class=line><span class=cl>gh pr merge 编号</span></span></code></pre></div></div><h3 id=其他操作>其他操作</h3><div class="code-block code-line-numbers" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+</span></span><span class=line><span class=cl>gh pr merge 编号</span></span></code></pre></div></div><h3 id=其他操作>其他操作</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-bash"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
 <span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
 <span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 查看仓库 Release</span>
 </span></span><span class=line><span class=cl>gh release list

@@ -1,0 +1,31 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>插件 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E6%8F%92%E4%BB%B6/</link><description>插件 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E6%8F%92%E4%BB%B6/" rel="self" type="application/rss+xml"/><item><title>03-Jenkins 首次配置与插件管理</title><link>https://blog.luhg.cn/03-jenkins%E9%A6%96%E6%AC%A1%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/03-jenkins%E9%A6%96%E6%AC%A1%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86/</guid><description><![CDATA[<h1 id="03-jenkins-首次配置与插件管理">03-Jenkins 首次配置与插件管理</h1>
+<h2 id="认识首页">认识首页</h2>
+<p>登录后，最常用的入口有：</p>
+<table>
+	<thead>
+			<tr>
+					<th>入口</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>New Item</td>
+					<td>新建任务。</td>
+			</tr>
+			<tr>
+					<td>Build History</td>
+					<td>查看最近的构建结果。</td>
+			</tr>
+			<tr>
+					<td>Manage Jenkins</td>
+					<td>管理插件、用户、节点和系统设置。</td>
+			</tr>
+			<tr>
+					<td>Manage Credentials</td>
+					<td>管理 Git Token、SSH 私钥、镜像仓库密码等敏感信息。</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="安装必需插件">安装必需插件</h2>
+<p>进入 <strong>Manage Jenkins -&gt; Plugins</strong>，在 Available plugins 中搜索并安装：</p>]]></description></item></channel></rss>

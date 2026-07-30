@@ -1,0 +1,63 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Pipeline - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/pipeline/</link><description>Pipeline - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/pipeline/" rel="self" type="application/rss+xml"/><item><title>05-理解 Pipeline 与 Jenkinsfile</title><link>https://blog.luhg.cn/05-%E7%90%86%E8%A7%A3pipeline%E4%B8%8Ejenkinsfile/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-%E7%90%86%E8%A7%A3pipeline%E4%B8%8Ejenkinsfile/</guid><description><![CDATA[<h1 id="05-理解-pipeline-与-jenkinsfile">05-理解 Pipeline 与 Jenkinsfile</h1>
+<h2 id="为什么不一直用自由风格任务">为什么不一直用自由风格任务</h2>
+<p>自由风格任务的配置主要保存在 Jenkins 页面中。它的问题是：</p>
+<ul>
+<li>配置不容易和代码一起审查。</li>
+<li>换 Jenkins 或恢复环境时迁移麻烦。</li>
+<li>多个任务的步骤容易复制粘贴后逐渐不一致。</li>
+</ul>
+<p>Pipeline 把流程写进代码，通常放在项目根目录的 <code>Jenkinsfile</code> 中并提交到 Git。</p>]]></description></item><item><title>06-编写第一个 Declarative Pipeline</title><link>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAdeclarative-pipeline/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAdeclarative-pipeline/</guid><description><![CDATA[<h1 id="06-编写第一个-declarative-pipeline">06-编写第一个 Declarative Pipeline</h1>
+<p>本章不依赖 Git 仓库，直接在 Jenkins 页面运行第一条 Pipeline。</p>
+<h2 id="新建-pipeline-任务">新建 Pipeline 任务</h2>
+<ol>
+<li>点击 <strong>New Item</strong>。</li>
+<li>名称输入 <code>first-pipeline</code>。</li>
+<li>选择 <strong>Pipeline</strong>。</li>
+<li>在 Pipeline 区域将 Definition 选择为 <strong>Pipeline script</strong>。</li>
+<li>粘贴下方脚本并保存。</li>
+</ol>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-groovy">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">pipeline</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">agent</span> <span class="n">any</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">stages</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;准备&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s1">&#39;开始执行流水线&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;java -version || true&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;构建&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;mkdir -p output &amp;&amp; echo &#34;build-${BUILD_NUMBER}&#34; &gt; output/result.txt&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;验证&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;test -f output/result.txt&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;cat output/result.txt&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">post</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">success</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">echo</span> <span class="s1">&#39;流水线执行成功&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">failure</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">echo</span> <span class="s1">&#39;流水线执行失败，请查看失败阶段的控制台日志&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">always</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">archiveArtifacts</span> <span class="nl">artifacts:</span> <span class="s1">&#39;output/**&#39;</span><span class="o">,</span> <span class="nl">allowEmptyArchive:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cleanWs</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div></div>
+<blockquote>
+<p>如果页面提示找不到 <code>cleanWs</code>，说明没有安装 Workspace Cleanup 插件。先删除这一行继续练习，或安装该插件后重试。</p>]]></description></item></channel></rss>

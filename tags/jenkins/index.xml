@@ -1,0 +1,157 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Jenkins - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/jenkins/</link><description>Jenkins - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/jenkins/" rel="self" type="application/rss+xml"/><item><title>01-什么是 Jenkins</title><link>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFjenkins/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01-%E4%BB%80%E4%B9%88%E6%98%AFjenkins/</guid><description><![CDATA[<h1 id="01-什么是-jenkins">01-什么是 Jenkins</h1>
+<h2 id="一句话理解">一句话理解</h2>
+<p><strong>Jenkins 是一个自动执行重复开发流程的工具。</strong> 最常见的流程是：拉取代码、编译、测试、打包、发布。</p>
+<p>以前发布一个项目，可能需要手动执行：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">git pull -&gt; mvn package -&gt; 上传 jar -&gt; 重启服务</span></span></code></pre></div></div>
+<p>手动操作的问题是：步骤容易漏、不同人执行结果不一致、出了问题也难追溯。Jenkins 可以把这些步骤写成流水线，每次都按同一规则运行。</p>]]></description></item><item><title>02-安装 Jenkins（Docker 方式）</title><link>https://blog.luhg.cn/02-%E5%AE%89%E8%A3%85jenkinsdocker%E6%96%B9%E5%BC%8F/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-%E5%AE%89%E8%A3%85jenkinsdocker%E6%96%B9%E5%BC%8F/</guid><description><![CDATA[<h1 id="02-安装-jenkinsdocker-方式">02-安装 Jenkins（Docker 方式）</h1>
+<p>本章用 Docker 启动 Jenkins。它比直接安装更容易清理、迁移和升级。</p>
+<h2 id="开始前检查">开始前检查</h2>
+<p>需要：</p>
+<ul>
+<li>已安装 Docker Desktop，或 Linux Docker Engine。</li>
+<li>本机 <code>8080</code> 和 <code>50000</code> 端口没有被占用。</li>
+</ul>
+<p>验证 Docker：</p>]]></description></item><item><title>03-Jenkins 首次配置与插件管理</title><link>https://blog.luhg.cn/03-jenkins%E9%A6%96%E6%AC%A1%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/03-jenkins%E9%A6%96%E6%AC%A1%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86/</guid><description><![CDATA[<h1 id="03-jenkins-首次配置与插件管理">03-Jenkins 首次配置与插件管理</h1>
+<h2 id="认识首页">认识首页</h2>
+<p>登录后，最常用的入口有：</p>
+<table>
+	<thead>
+			<tr>
+					<th>入口</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>New Item</td>
+					<td>新建任务。</td>
+			</tr>
+			<tr>
+					<td>Build History</td>
+					<td>查看最近的构建结果。</td>
+			</tr>
+			<tr>
+					<td>Manage Jenkins</td>
+					<td>管理插件、用户、节点和系统设置。</td>
+			</tr>
+			<tr>
+					<td>Manage Credentials</td>
+					<td>管理 Git Token、SSH 私钥、镜像仓库密码等敏感信息。</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="安装必需插件">安装必需插件</h2>
+<p>进入 <strong>Manage Jenkins -&gt; Plugins</strong>，在 Available plugins 中搜索并安装：</p>]]></description></item><item><title>04-创建第一个自由风格任务</title><link>https://blog.luhg.cn/04-%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%87%AA%E7%94%B1%E9%A3%8E%E6%A0%BC%E4%BB%BB%E5%8A%A1/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/04-%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%87%AA%E7%94%B1%E9%A3%8E%E6%A0%BC%E4%BB%BB%E5%8A%A1/</guid><description>&lt;h1 id="04-创建第一个自由风格任务">04-创建第一个自由风格任务&lt;/h1>
+&lt;p>自由风格任务（Freestyle project）适合认识 Jenkins 的基本流程。真实项目更推荐 Pipeline，但先做一次自由风格任务，能帮助你理解构建记录、控制台日志和工作区。&lt;/p></description></item><item><title>05-理解 Pipeline 与 Jenkinsfile</title><link>https://blog.luhg.cn/05-%E7%90%86%E8%A7%A3pipeline%E4%B8%8Ejenkinsfile/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-%E7%90%86%E8%A7%A3pipeline%E4%B8%8Ejenkinsfile/</guid><description><![CDATA[<h1 id="05-理解-pipeline-与-jenkinsfile">05-理解 Pipeline 与 Jenkinsfile</h1>
+<h2 id="为什么不一直用自由风格任务">为什么不一直用自由风格任务</h2>
+<p>自由风格任务的配置主要保存在 Jenkins 页面中。它的问题是：</p>
+<ul>
+<li>配置不容易和代码一起审查。</li>
+<li>换 Jenkins 或恢复环境时迁移麻烦。</li>
+<li>多个任务的步骤容易复制粘贴后逐渐不一致。</li>
+</ul>
+<p>Pipeline 把流程写进代码，通常放在项目根目录的 <code>Jenkinsfile</code> 中并提交到 Git。</p>]]></description></item><item><title>06-编写第一个 Declarative Pipeline</title><link>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAdeclarative-pipeline/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAdeclarative-pipeline/</guid><description><![CDATA[<h1 id="06-编写第一个-declarative-pipeline">06-编写第一个 Declarative Pipeline</h1>
+<p>本章不依赖 Git 仓库，直接在 Jenkins 页面运行第一条 Pipeline。</p>
+<h2 id="新建-pipeline-任务">新建 Pipeline 任务</h2>
+<ol>
+<li>点击 <strong>New Item</strong>。</li>
+<li>名称输入 <code>first-pipeline</code>。</li>
+<li>选择 <strong>Pipeline</strong>。</li>
+<li>在 Pipeline 区域将 Definition 选择为 <strong>Pipeline script</strong>。</li>
+<li>粘贴下方脚本并保存。</li>
+</ol>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-groovy">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">pipeline</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">agent</span> <span class="n">any</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">stages</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;准备&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s1">&#39;开始执行流水线&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;java -version || true&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;构建&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;mkdir -p output &amp;&amp; echo &#34;build-${BUILD_NUMBER}&#34; &gt; output/result.txt&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;验证&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;test -f output/result.txt&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;cat output/result.txt&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">post</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">success</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">echo</span> <span class="s1">&#39;流水线执行成功&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">failure</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">echo</span> <span class="s1">&#39;流水线执行失败，请查看失败阶段的控制台日志&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">always</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">archiveArtifacts</span> <span class="nl">artifacts:</span> <span class="s1">&#39;output/**&#39;</span><span class="o">,</span> <span class="nl">allowEmptyArchive:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cleanWs</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div></div>
+<blockquote>
+<p>如果页面提示找不到 <code>cleanWs</code>，说明没有安装 Workspace Cleanup 插件。先删除这一行继续练习，或安装该插件后重试。</p>]]></description></item><item><title>07-连接 Git 仓库与自动触发构建</title><link>https://blog.luhg.cn/07-%E8%BF%9E%E6%8E%A5git%E4%BB%93%E5%BA%93%E4%B8%8E%E8%87%AA%E5%8A%A8%E8%A7%A6%E5%8F%91%E6%9E%84%E5%BB%BA/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/07-%E8%BF%9E%E6%8E%A5git%E4%BB%93%E5%BA%93%E4%B8%8E%E8%87%AA%E5%8A%A8%E8%A7%A6%E5%8F%91%E6%9E%84%E5%BB%BA/</guid><description><![CDATA[<h1 id="07-连接-git-仓库与自动触发构建">07-连接 Git 仓库与自动触发构建</h1>
+<p>从这一章开始，让 Jenkins 从 Git 仓库读取 <code>Jenkinsfile</code>。这样构建流程和项目代码会始终保持同步。</p>
+<h2 id="准备仓库">准备仓库</h2>
+<p>在项目根目录创建 <code>Jenkinsfile</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-groovy">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">pipeline</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">agent</span> <span class="n">any</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">stages</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;检查代码&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;git rev-parse --short HEAD&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s1">&#39;echo &#34;正在构建分支：${BRANCH_NAME:-main}&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div></div>
+<p>提交并推送：</p>]]></description></item><item><title>08-管理凭据与环境变量</title><link>https://blog.luhg.cn/08-%E7%AE%A1%E7%90%86%E5%87%AD%E6%8D%AE%E4%B8%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/08-%E7%AE%A1%E7%90%86%E5%87%AD%E6%8D%AE%E4%B8%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</guid><description><![CDATA[<h1 id="08-管理凭据与环境变量">08-管理凭据与环境变量</h1>
+<h2 id="绝对不要这样做">绝对不要这样做</h2>
+<p>不要把密码、Token、私钥直接写在 <code>Jenkinsfile</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-groovy">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="c1">// 错误示例：不要提交这种内容
+</span></span></span><span class="line"><span class="cl"><span class="n">sh</span> <span class="s1">&#39;docker login -u my-user -p my-secret-password&#39;</span></span></span></code></pre></div></div>
+<p>代码库会保存历史记录，泄露后的 Token 即使删除代码也可能仍可被找回。</p>]]></description></item><item><title>09-构建 Java 项目并发布制品</title><link>https://blog.luhg.cn/09-%E6%9E%84%E5%BB%BAjava%E9%A1%B9%E7%9B%AE%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B6%E5%93%81/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-%E6%9E%84%E5%BB%BAjava%E9%A1%B9%E7%9B%AE%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B6%E5%93%81/</guid><description><![CDATA[<h1 id="09-构建-java-项目并发布制品">09-构建 Java 项目并发布制品</h1>
+<p>本章以 Maven 项目为例，完成“拉代码 -&gt; 测试 -&gt; 打包 -&gt; 保存 jar”的持续集成流程。</p>
+<h2 id="推荐使用-maven-wrapper">推荐使用 Maven Wrapper</h2>
+<p>项目中若有 <code>mvnw</code> 和 <code>.mvn/</code>，优先使用：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./mvnw <span class="nb">test</span>
+</span></span><span class="line"><span class="cl">./mvnw package</span></span></code></pre></div></div>
+<p>这样项目会固定 Maven 版本，减少“本地能跑、Jenkins 不能跑”的环境差异。</p>]]></description></item><item><title>10-构建 Docker 镜像并部署测试环境</title><link>https://blog.luhg.cn/10-%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F%E5%B9%B6%E9%83%A8%E7%BD%B2%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/10-%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F%E5%B9%B6%E9%83%A8%E7%BD%B2%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/</guid><description><![CDATA[<h1 id="10-构建-docker-镜像并部署测试环境">10-构建 Docker 镜像并部署测试环境</h1>
+<p>这一章演示一个可理解的部署流程：测试通过后构建镜像，推送到镜像仓库，再通过 SSH 让测试服务器更新容器。</p>
+<h2 id="dockerfile-示例">Dockerfile 示例</h2>
+<p>放在 Java 项目根目录：</p>]]></description></item></channel></rss>

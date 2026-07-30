@@ -1,0 +1,36 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>缓存 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E7%BC%93%E5%AD%98/</link><description>缓存 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E7%BC%93%E5%AD%98/" rel="self" type="application/rss+xml"/><item><title>Redis Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="redis-java-小白教程">Redis Java 小白教程</h1>
+<p>这是一套从零开始的 Redis 教程。你只需要会 Java、Maven 和一点命令行，就能跟着完成全部示例。</p>
+<p>本系列约定：</p>
+<ul>
+<li>JDK 17</li>
+<li>Maven 3.9+</li>
+<li>Docker Desktop</li>
+<li>Redis 7</li>
+<li>Java 客户端：Jedis</li>
+</ul>
+<p>学完后，你能在 Java 项目中正确使用 Redis 缓存、设置过期时间、避免常见缓存问题，并能把 Redis 接入 Spring Boot。</p>]]></description></item><item><title>缓存穿透、击穿与雪崩</title><link>https://blog.luhg.cn/07-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%87%BB%E7%A9%BF%E9%9B%AA%E5%B4%A9/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/07-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%87%BB%E7%A9%BF%E9%9B%AA%E5%B4%A9/</guid><description><![CDATA[<h1 id="缓存穿透击穿与雪崩">缓存穿透、击穿与雪崩</h1>
+<p>这三个词很像，但问题不同。先用一句话区分：</p>
+<table>
+	<thead>
+			<tr>
+					<th>问题</th>
+					<th>发生了什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>缓存穿透</td>
+					<td>请求的数据根本不存在</td>
+			</tr>
+			<tr>
+					<td>缓存击穿</td>
+					<td>一个热点 Key 刚好失效</td>
+			</tr>
+			<tr>
+					<td>缓存雪崩</td>
+					<td>大量 Key 在同一时间失效或 Redis 整体不可用</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="1-缓存穿透">1. 缓存穿透</h2>
+<p>攻击者或异常客户端不断请求不存在的 <code>product:-1</code>。Redis 没有，数据库也没有，每个请求都打到数据库。</p>]]></description></item></channel></rss>

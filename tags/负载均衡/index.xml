@@ -1,0 +1,12 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>负载均衡 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link><description>负载均衡 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" rel="self" type="application/rss+xml"/><item><title>注册中心与负载均衡</title><link>https://blog.luhg.cn/07-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/07-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</guid><description><![CDATA[<h1 id="注册中心与负载均衡">注册中心与负载均衡</h1>
+<p>目标：理解 Provider 和 Consumer 为什么不需要互相写死 IP，以及多个 Provider 如何分担调用。</p>
+<h2 id="1-注册中心做了什么">1. 注册中心做了什么</h2>
+<p>Provider 启动后向 ZooKeeper 注册自己的服务地址：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">UserService -&gt; 10.0.0.11:20880
+</span></span><span class="line"><span class="cl">UserService -&gt; 10.0.0.12:20880</span></span></code></pre></div></div>
+<p>Consumer 订阅这个服务。ZooKeeper 中的地址发生变化时，Consumer 会收到通知并更新本地可调用列表。</p>]]></description></item></channel></rss>

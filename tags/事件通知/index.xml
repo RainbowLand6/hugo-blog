@@ -1,0 +1,7 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>事件通知 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E4%BA%8B%E4%BB%B6%E9%80%9A%E7%9F%A5/</link><description>事件通知 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 23 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E4%BA%8B%E4%BB%B6%E9%80%9A%E7%9F%A5/" rel="self" type="application/rss+xml"/><item><title>05-ZooKeeper Watcher机制：当数据变化时自动通知你</title><link>https://blog.luhg.cn/05-zookeeper-watcher%E6%9C%BA%E5%88%B6/</link><pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-zookeeper-watcher%E6%9C%BA%E5%88%B6/</guid><description><![CDATA[<h2 id="一watcher-是什么">一、Watcher 是什么？</h2>
+<p>假设你有一个 Java 应用从 ZooKeeper 读配置。如果配置被管理员改了，你的应用怎么知道？有两种方案：</p>
+<ul>
+<li><strong>轮询</strong>：每隔 5 秒读一次。缺点是延迟高、无意义请求多。</li>
+<li><strong>Watcher</strong>：对 znode 注册一个监听器，数据一变 ZooKeeper 就通知你。</li>
+</ul>
+<p>Watcher 就是 ZooKeeper 的<strong>事件通知机制</strong>。它不是推送给你的所有客户端，而是你主动说&quot;我对这个节点感兴趣&quot;，ZooKeeper 在变化发生时通知你一次。</p>]]></description></item></channel></rss>

@@ -1,0 +1,89 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>教程 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E6%95%99%E7%A8%8B/</link><description>教程 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E6%95%99%E7%A8%8B/" rel="self" type="application/rss+xml"/><item><title>Docker Linux 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="docker-linux-小白教程">Docker Linux 小白教程</h1>
+<p>这是一套以 Linux 服务器为例的 Docker 入门教程。主线使用 Ubuntu/Debian 的命令；CentOS、Rocky Linux、AlmaLinux 等系统的概念和 Docker 命令相同，只是安装软件时使用 <code>dnf</code> 或 <code>yum</code>。</p>]]></description></item><item><title>Dubbo Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="dubbo-java-小白教程">Dubbo Java 小白教程</h1>
+<p>这是一套面向 Java 初学者的 Dubbo 教程。主线使用 Spring Boot、Dubbo 3.3.0 和 ZooKeeper 注册中心，完成一个“订单服务调用用户服务”的 RPC 项目。</p>
+<p>本系列约定：</p>
+<ul>
+<li>JDK 17</li>
+<li>Maven 3.9+</li>
+<li>Spring Boot 3.x</li>
+<li>Dubbo 3.3.0</li>
+<li>ZooKeeper 3.9+</li>
+<li>Docker Desktop</li>
+</ul>
+<h2 id="阅读顺序">阅读顺序</h2>
+<h3 id="入门">入门</h3>
+<ol>
+<li>[[01-什么是Dubbo]]</li>
+<li>[[02-用Docker启动ZooKeeper注册中心]]</li>
+<li>[[03-创建Dubbo多模块项目]]</li>
+<li>[[04-定义公共接口与DTO]]</li>
+</ol>
+<h3 id="跑通-rpc-调用">跑通 RPC 调用</h3>
+<ol start="5">
+<li>[[05-编写Dubbo服务提供者]]</li>
+<li>[[06-编写Dubbo服务消费者]]</li>
+<li>[[07-注册中心与负载均衡]]</li>
+<li>[[08-超时重试异常与幂等]]</li>
+</ol>
+<h3 id="部署与排障">部署与排障</h3>
+<ol start="9">
+<li>[[09-Dubbo项目部署与配置管理]]</li>
+<li>[[10-Dubbo常见问题与排障清单]]</li>
+</ol>
+<h2 id="项目结构">项目结构</h2>
+<p>教程中的示例使用三个 Maven 模块：</p>]]></description></item><item><title>Elasticsearch Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description>&lt;h1 id="elasticsearch-java-小白教程">Elasticsearch Java 小白教程&lt;/h1>
+&lt;p>这是一套面向 Java 初学者的 Elasticsearch 教程。你会从本地启动一个单节点服务开始，逐步学会索引设计、查询 DSL、Java 客户端、Spring Boot 集成和排障。&lt;/p></description></item><item><title>Kafka Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="kafka-java-小白教程">Kafka Java 小白教程</h1>
+<p>这是一套从零开始的 Kafka 教程。你不需要有消息队列经验；会 Java、Maven 和一点命令行就可以开始。</p>
+<p>教程中的环境约定：</p>
+<ul>
+<li>JDK 17</li>
+<li>Maven 3.9+</li>
+<li>Docker Desktop</li>
+<li>Kafka 3.9.1</li>
+<li>Windows、macOS、Linux 均可，命令中的 <code>docker compose</code> 相同</li>
+</ul>
+<p>学完后，你能独立完成一条常见的业务消息链路：Java 服务发送订单消息，多个消费者按组处理消息，出错时不丢消息、不重复扣费，并知道从哪里开始排障。</p>]]></description></item><item><title>Redis Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="redis-java-小白教程">Redis Java 小白教程</h1>
+<p>这是一套从零开始的 Redis 教程。你只需要会 Java、Maven 和一点命令行，就能跟着完成全部示例。</p>
+<p>本系列约定：</p>
+<ul>
+<li>JDK 17</li>
+<li>Maven 3.9+</li>
+<li>Docker Desktop</li>
+<li>Redis 7</li>
+<li>Java 客户端：Jedis</li>
+</ul>
+<p>学完后，你能在 Java 项目中正确使用 Redis 缓存、设置过期时间、避免常见缓存问题，并能把 Redis 接入 Spring Boot。</p>]]></description></item><item><title>Jenkins 从入门到进阶教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="jenkins-从入门到进阶教程">Jenkins 从入门到进阶教程</h1>
+<p>这是一套给初学者的 Jenkins 实战教程。目标不是记住一堆按钮，而是能够自己搭建一条可维护的 CI/CD 流水线。</p>
+<h2 id="学完后你能做到什么">学完后你能做到什么</h2>
+<ul>
+<li>用 Docker 在本地启动 Jenkins。</li>
+<li>创建任务，在代码提交后自动构建和测试。</li>
+<li>编写并理解 Declarative Pipeline 风格的 <code>Jenkinsfile</code>。</li>
+<li>使用凭据安全地访问 Git 仓库、镜像仓库和服务器。</li>
+<li>构建 Docker 镜像，并部署到测试环境。</li>
+<li>排查常见失败，完成 Jenkins 的备份、恢复和日常维护。</li>
+</ul>
+<h2 id="阅读顺序">阅读顺序</h2>
+<h3 id="入门">入门</h3>
+<ol>
+<li>[[01-什么是Jenkins]]</li>
+<li>[[02-安装Jenkins（Docker方式）]]</li>
+<li>[[03-Jenkins首次配置与插件管理]]</li>
+<li>[[04-创建第一个自由风格任务]]</li>
+</ol>
+<h3 id="核心">核心</h3>
+<ol start="5">
+<li>[[05-理解Pipeline与Jenkinsfile]]</li>
+<li>[[06-编写第一个Declarative-Pipeline]]</li>
+<li>[[07-连接Git仓库与自动触发构建]]</li>
+<li>[[08-管理凭据与环境变量]]</li>
+</ol>
+<h3 id="实战与进阶">实战与进阶</h3>
+<ol start="9">
+<li>[[09-构建Java项目并发布制品]]</li>
+<li>[[10-构建Docker镜像并部署测试环境]]</li>
+<li>[[11-多分支流水线与共享库]]</li>
+<li>[[12-安全、备份、监控与故障排查]]</li>
+</ol>
+<h2 id="练习项目约定">练习项目约定</h2>
+<p>后续示例以 Maven Java 项目为例，目录大致如下：</p>]]></description></item></channel></rss>

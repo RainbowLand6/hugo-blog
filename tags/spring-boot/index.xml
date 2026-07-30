@@ -1,0 +1,137 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Spring Boot - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/spring-boot/</link><description>Spring Boot - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/spring-boot/" rel="self" type="application/rss+xml"/><item><title>Docker 部署 Java Spring Boot 应用</title><link>https://blog.luhg.cn/08-docker%E9%83%A8%E7%BD%B2java-spring-boot%E5%BA%94%E7%94%A8/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/08-docker%E9%83%A8%E7%BD%B2java-spring-boot%E5%BA%94%E7%94%A8/</guid><description><![CDATA[<h1 id="docker-部署-java-spring-boot-应用">Docker 部署 Java Spring Boot 应用</h1>
+<p>目标：将一个已经打包好的 Spring Boot JAR 运行在 Docker 容器中。</p>
+<h2 id="1-先在本机打包">1. 先在本机打包</h2>
+<p>项目根目录执行：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mvn clean package -DskipTests</span></span></code></pre></div></div>
+<p>假设产物是：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">target/demo-app-1.0.0.jar</span></span></code></pre></div></div>
+<h2 id="2-编写-dockerfile">2. 编写 Dockerfile</h2>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-dockerfile">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="s">eclipse-temurin:21-jre</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">COPY</span> target/demo-app-1.0.0.jar app.jar<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">RUN</span> useradd --system --uid <span class="m">10001</span> appuser<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">USER</span><span class="w"> </span><span class="s">appuser</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8080</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;/app/app.jar&#34;</span><span class="p">]</span></span></span></code></pre></div></div>
+<p>这里使用 JRE 镜像而不是 JDK 镜像，体积更小；同时用非 root 用户运行应用。</p>]]></description></item><item><title>Dubbo Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="dubbo-java-小白教程">Dubbo Java 小白教程</h1>
+<p>这是一套面向 Java 初学者的 Dubbo 教程。主线使用 Spring Boot、Dubbo 3.3.0 和 ZooKeeper 注册中心，完成一个“订单服务调用用户服务”的 RPC 项目。</p>
+<p>本系列约定：</p>
+<ul>
+<li>JDK 17</li>
+<li>Maven 3.9+</li>
+<li>Spring Boot 3.x</li>
+<li>Dubbo 3.3.0</li>
+<li>ZooKeeper 3.9+</li>
+<li>Docker Desktop</li>
+</ul>
+<h2 id="阅读顺序">阅读顺序</h2>
+<h3 id="入门">入门</h3>
+<ol>
+<li>[[01-什么是Dubbo]]</li>
+<li>[[02-用Docker启动ZooKeeper注册中心]]</li>
+<li>[[03-创建Dubbo多模块项目]]</li>
+<li>[[04-定义公共接口与DTO]]</li>
+</ol>
+<h3 id="跑通-rpc-调用">跑通 RPC 调用</h3>
+<ol start="5">
+<li>[[05-编写Dubbo服务提供者]]</li>
+<li>[[06-编写Dubbo服务消费者]]</li>
+<li>[[07-注册中心与负载均衡]]</li>
+<li>[[08-超时重试异常与幂等]]</li>
+</ol>
+<h3 id="部署与排障">部署与排障</h3>
+<ol start="9">
+<li>[[09-Dubbo项目部署与配置管理]]</li>
+<li>[[10-Dubbo常见问题与排障清单]]</li>
+</ol>
+<h2 id="项目结构">项目结构</h2>
+<p>教程中的示例使用三个 Maven 模块：</p>]]></description></item><item><title>Spring Boot 集成 Elasticsearch</title><link>https://blog.luhg.cn/09-spring-boot%E9%9B%86%E6%88%90elasticsearch/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-spring-boot%E9%9B%86%E6%88%90elasticsearch/</guid><description><![CDATA[<h1 id="spring-boot-集成-elasticsearch">Spring Boot 集成 Elasticsearch</h1>
+<p>目标：让 Spring Boot 管理 Elasticsearch 客户端，并在业务服务中执行搜索。</p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
+<p>在 Spring Boot 项目中加入：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-elasticsearch<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span></span></span></code></pre></div></div>
+<p>使用 Spring Boot 依赖管理时，不要随意再手工指定 Elasticsearch Java Client 版本，避免依赖版本不一致。</p>]]></description></item><item><title>Spring Boot 集成 Kafka</title><link>https://blog.luhg.cn/09-spring-boot%E9%9B%86%E6%88%90kafka/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-spring-boot%E9%9B%86%E6%88%90kafka/</guid><description><![CDATA[<h1 id="spring-boot-集成-kafka">Spring Boot 集成 Kafka</h1>
+<p>目标：在 Spring Boot 中发送和监听 Kafka 消息。下面示例基于 Spring Boot 3.x 和 Java 17。</p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
+<p>在 <code>pom.xml</code> 中加入：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-kafka<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span></span></span></code></pre></div></div>
+<p>如果项目使用 Spring Boot 的依赖管理，不需要单独指定 Kafka 客户端版本，避免版本不兼容。</p>]]></description></item><item><title>Spring Boot 集成 Redis</title><link>https://blog.luhg.cn/09-spring-boot%E9%9B%86%E6%88%90redis/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/09-spring-boot%E9%9B%86%E6%88%90redis/</guid><description><![CDATA[<h1 id="spring-boot-集成-redis">Spring Boot 集成 Redis</h1>
+<p>目标：使用 Spring Boot 的 <code>RedisTemplate</code> 读写 Redis，并通过注解使用缓存。</p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
+<p><code>pom.xml</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-redis<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span></span></span></code></pre></div></div>
+<p>Spring Boot 默认使用 Lettuce 客户端，适合大多数应用。不要再额外引入 Jedis，除非项目有明确需要。</p>]]></description></item><item><title>阿里云 Elasticsearch 项目实战</title><link>https://blog.luhg.cn/11-%E9%98%BF%E9%87%8C%E4%BA%91elasticsearch%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/11-%E9%98%BF%E9%87%8C%E4%BA%91elasticsearch%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="阿里云-elasticsearch-项目实战">阿里云 Elasticsearch 项目实战&lt;/h1>
+&lt;p>目标：把商品搜索从本地 Docker 环境迁移到阿里云 Elasticsearch，并完成“数据库商品数据同步到搜索索引、提供搜索接口、上线检查”这条最小闭环。&lt;/p></description></item><item><title>编写 Dubbo 服务提供者</title><link>https://blog.luhg.cn/05-%E7%BC%96%E5%86%99dubbo%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E8%80%85/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-%E7%BC%96%E5%86%99dubbo%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E8%80%85/</guid><description><![CDATA[<h1 id="编写-dubbo-服务提供者">编写 Dubbo 服务提供者</h1>
+<p>目标：让 <code>user-provider</code> 把 <code>UserService</code> 注册到 ZooKeeper。</p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
+<p><code>user-provider/pom.xml</code> 的核心依赖：</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>dubbo-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.apache.dubbo<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>dubbo-spring-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>3.3.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.apache.dubbo<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>dubbo-registry-zookeeper<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>3.3.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependencies&gt;</span></span></span></code></pre></div></div>
+<p>项目还需要正常的 Spring Boot 依赖和插件配置。这里仅展示 Dubbo 相关部分。</p>]]></description></item><item><title>编写 Dubbo 服务消费者</title><link>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99dubbo%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%E8%80%85/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-%E7%BC%96%E5%86%99dubbo%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%E8%80%85/</guid><description><![CDATA[<h1 id="编写-dubbo-服务消费者">编写 Dubbo 服务消费者</h1>
+<p>目标：让 <code>order-consumer</code> 从 ZooKeeper 发现 <code>UserService</code>，并在订单逻辑中调用它。</p>
+<h2 id="1-添加依赖">1. 添加依赖</h2>
+<p>消费者的依赖与 Provider 类似：依赖 <code>dubbo-api</code>、<code>dubbo-spring-boot-starter</code> 和 <code>dubbo-registry-zookeeper</code>。Consumer 不需要依赖 Provider 的实现模块。</p>]]></description></item></channel></rss>

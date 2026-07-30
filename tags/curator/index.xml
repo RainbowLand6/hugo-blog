@@ -1,0 +1,9 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Curator - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/curator/</link><description>Curator - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 23 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/curator/" rel="self" type="application/rss+xml"/><item><title>07-Java客户端Curator实战：像写单机程序一样写分布式程序</title><link>https://blog.luhg.cn/07-java%E5%AE%A2%E6%88%B7%E7%AB%AFcurator%E5%AE%9E%E6%88%98/</link><pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/07-java%E5%AE%A2%E6%88%B7%E7%AB%AFcurator%E5%AE%9E%E6%88%98/</guid><description><![CDATA[<h2 id="一为什么要用-curator-而不是原生-api">一、为什么要用 Curator 而不是原生 API？</h2>
+<p>ZooKeeper 的原生 Java API 有几个让大家头疼的问题：</p>
+<ul>
+<li>Watcher 是一次性的，每次收到通知都要手动重新注册</li>
+<li>连接断开、Session 过期需要自己处理重连逻辑</li>
+<li>没有现成的分布式锁、Leader 选举等高级工具</li>
+<li>异常处理繁琐（<code>KeeperException.ConnectionLossException</code> 等）</li>
+</ul>
+<p><strong>Curator</strong> 是 Netflix 开源、后捐给 Apache 的 ZooKeeper 高级客户端框架。它做的事情就是帮你把这些坑填了，让你用 Fluent 风格的 API 写干净的代码。</p>]]></description></item></channel></rss>

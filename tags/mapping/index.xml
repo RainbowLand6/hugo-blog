@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Mapping - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/mapping/</link><description>Mapping - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/mapping/" rel="self" type="application/rss+xml"/><item><title>聚合查询与索引设计</title><link>https://blog.luhg.cn/08-%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2%E4%B8%8E%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/08-%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2%E4%B8%8E%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1/</guid><description><![CDATA[<h1 id="聚合查询与索引设计">聚合查询与索引设计</h1>
+<p>目标：按品牌统计商品数量，并掌握几个避免后期返工的 Mapping 原则。</p>
+<h2 id="1-什么是聚合">1. 什么是聚合</h2>
+<p>聚合不是返回每一条商品，而是返回统计结果。例如“每个品牌有多少商品”：</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-json">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/products/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;brand_count&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;brand&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p><code>size: 0</code> 表示不需要普通搜索结果，只需要统计。</p>]]></description></item><item><title>索引、文档与 Mapping</title><link>https://blog.luhg.cn/03-%E7%B4%A2%E5%BC%95%E6%96%87%E6%A1%A3%E4%B8%8Emapping/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/03-%E7%B4%A2%E5%BC%95%E6%96%87%E6%A1%A3%E4%B8%8Emapping/</guid><description><![CDATA[<h1 id="索引文档与-mapping">索引、文档与 Mapping</h1>
+<p>目标：主动创建一个 <code>products</code> 索引，明确字段类型，而不是让 Elasticsearch 猜测一切。</p>
+<h2 id="1-为什么要先设计-mapping">1. 为什么要先设计 Mapping</h2>
+<p>Elasticsearch 可以动态推断字段类型，但第一次写入的数据一旦推断错误，之后修改很麻烦。</p>]]></description></item></channel></rss>

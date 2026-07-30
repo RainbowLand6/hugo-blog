@@ -1,0 +1,26 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>安装 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E5%AE%89%E8%A3%85/</link><description>安装 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E5%AE%89%E8%A3%85/" rel="self" type="application/rss+xml"/><item><title>Ubuntu 安装 Docker</title><link>https://blog.luhg.cn/02-ubuntu%E5%AE%89%E8%A3%85docker/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-ubuntu%E5%AE%89%E8%A3%85docker/</guid><description><![CDATA[<h1 id="ubuntu-安装-docker">Ubuntu 安装 Docker</h1>
+<p>目标：在 Ubuntu 上通过 Docker 官方 apt 仓库安装 Docker Engine 和 Compose 插件，并运行第一个容器。</p>
+<h2 id="1-确认系统和架构">1. 确认系统和架构</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /etc/os-release
+</span></span><span class="line"><span class="cl">uname -m</span></span></code></pre></div></div>
+<p>本篇适用于 Ubuntu 22.04、24.04 等较新的 LTS 版本。使用 CentOS、Rocky Linux、AlmaLinux 时，请按对应系统的官方安装文档添加 Docker 仓库；后续 <code>docker</code> 命令相同。</p>]]></description></item><item><title>02-安装 Jenkins（Docker 方式）</title><link>https://blog.luhg.cn/02-%E5%AE%89%E8%A3%85jenkinsdocker%E6%96%B9%E5%BC%8F/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-%E5%AE%89%E8%A3%85jenkinsdocker%E6%96%B9%E5%BC%8F/</guid><description><![CDATA[<h1 id="02-安装-jenkinsdocker-方式">02-安装 Jenkins（Docker 方式）</h1>
+<p>本章用 Docker 启动 Jenkins。它比直接安装更容易清理、迁移和升级。</p>
+<h2 id="开始前检查">开始前检查</h2>
+<p>需要：</p>
+<ul>
+<li>已安装 Docker Desktop，或 Linux Docker Engine。</li>
+<li>本机 <code>8080</code> 和 <code>50000</code> 端口没有被占用。</li>
+</ul>
+<p>验证 Docker：</p>]]></description></item><item><title>02-ZooKeeper单机安装与基本操作</title><link>https://blog.luhg.cn/02-zookeeper%E5%8D%95%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</link><pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-zookeeper%E5%8D%95%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</guid><description><![CDATA[<h2 id="一开始之前确认环境">一、开始之前：确认环境</h2>
+<p>本教程以 <strong>Linux（CentOS 7 / Ubuntu 20.04）</strong> 为主，最后也会给 Windows 的简要说明。你需要：</p>
+<ul>
+<li>JDK 8 或更高版本（ZooKeeper 是用 Java 写的）</li>
+<li>一台能联网的机器（虚拟机也行）</li>
+<li>基本的 Linux 命令操作能力</li>
+</ul>
+<p><strong>成功标志</strong>：确认 JDK 已安装。</p>]]></description></item></channel></rss>

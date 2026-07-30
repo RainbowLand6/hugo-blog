@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>安全 - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/%E5%AE%89%E5%85%A8/</link><description>安全 - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/%E5%AE%89%E5%85%A8/" rel="self" type="application/rss+xml"/><item><title>08-管理凭据与环境变量</title><link>https://blog.luhg.cn/08-%E7%AE%A1%E7%90%86%E5%87%AD%E6%8D%AE%E4%B8%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/08-%E7%AE%A1%E7%90%86%E5%87%AD%E6%8D%AE%E4%B8%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</guid><description><![CDATA[<h1 id="08-管理凭据与环境变量">08-管理凭据与环境变量</h1>
+<h2 id="绝对不要这样做">绝对不要这样做</h2>
+<p>不要把密码、Token、私钥直接写在 <code>Jenkinsfile</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-groovy">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="c1">// 错误示例：不要提交这种内容
+</span></span></span><span class="line"><span class="cl"><span class="n">sh</span> <span class="s1">&#39;docker login -u my-user -p my-secret-password&#39;</span></span></span></code></pre></div></div>
+<p>代码库会保存历史记录，泄露后的 Token 即使删除代码也可能仍可被找回。</p>]]></description></item><item><title>12-安全、备份、监控与故障排查</title><link>https://blog.luhg.cn/12-%E5%AE%89%E5%85%A8%E5%A4%87%E4%BB%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/</link><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/12-%E5%AE%89%E5%85%A8%E5%A4%87%E4%BB%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/</guid><description><![CDATA[<h1 id="12-安全备份监控与故障排查">12-安全、备份、监控与故障排查</h1>
+<p>Jenkins 一旦能部署代码，就已经是重要系统。最后一章把日常最关键的维护动作集中起来。</p>
+<h2 id="安全基线">安全基线</h2>
+<ul>
+<li>不要把 Jenkins 直接裸露在公网。</li>
+<li>启用登录认证；团队环境按角色分配权限，不共享管理员账号。</li>
+<li>凭据保存在 Credentials，不提交到仓库，不打印到日志。</li>
+<li>Controller 尽量只负责调度，构建在隔离 Agent 中执行。</li>
+<li>定期升级 Jenkins LTS 和已安装插件，升级前先备份。</li>
+<li>审核谁能修改 <code>Jenkinsfile</code>。能修改流水线的人，通常也能影响部署动作。</li>
+</ul>
+<h2 id="备份什么">备份什么</h2>
+<p>Docker 安装时，核心数据在 <code>/var/jenkins_home</code>，也就是本教程的 <code>jenkins_home</code> 数据卷。</p>]]></description></item></channel></rss>

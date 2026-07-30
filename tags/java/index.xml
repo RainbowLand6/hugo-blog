@@ -1,17 +1,285 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Java - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/java/</link><description>Java - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 09 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/java/" rel="self" type="application/rss+xml"/><item><title>01-JDK，JRE和JVM是什么？三者有什么关系？</title><link>https://blog.luhg.cn/01jdkjre%E5%92%8Cjvm%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%89%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB/</link><pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/01jdkjre%E5%92%8Cjvm%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%89%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB/</guid><description><![CDATA[<ul>
-<li>
-<p><strong>JDK</strong> ：英文全称 Java Development Kit，是Java的开发工具包 JDK是提供给Java开发人员使用的，其中包含了<code>Java的开发工具</code>和<code>JRE</code>。其中的开发工具包括：编译工具（javac.exe）打包工具（jar.exe）等。通俗的说就是<strong>开发用的</strong> 。</p>]]></description></item><item><title>02-JVM体系，类加载过程</title><link>https://blog.luhg.cn/02jvm%E4%BD%93%E7%B3%BB%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</link><pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02jvm%E4%BD%93%E7%B3%BB%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</guid><description><![CDATA[<p></p>
-<p>JVM由三部分组成：<strong>运行时数据区</strong> ，<strong>类装载子系统</strong> ，<strong>字节码执行引擎</strong></p>
-<p>运行时数据区：也就是jvm的内存模型，分为堆，栈，方法区，本地方法栈，程序计数器5个部分。</p>]]></description></item><item><title>03-双亲委派机制</title><link>https://blog.luhg.cn/03%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</link><pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/03%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/</guid><description><![CDATA[<p>加载一个 Class 类的顺序也是有优先级的，类加载器从最底层开始往上的顺序是这样的</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Java - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/java/</link><description>Java - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/java/" rel="self" type="application/rss+xml"/><item><title>Docker 部署 Java Spring Boot 应用</title><link>https://blog.luhg.cn/08-docker%E9%83%A8%E7%BD%B2java-spring-boot%E5%BA%94%E7%94%A8/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/08-docker%E9%83%A8%E7%BD%B2java-spring-boot%E5%BA%94%E7%94%A8/</guid><description><![CDATA[<h1 id="docker-部署-java-spring-boot-应用">Docker 部署 Java Spring Boot 应用</h1>
+<p>目标：将一个已经打包好的 Spring Boot JAR 运行在 Docker 容器中。</p>
+<h2 id="1-先在本机打包">1. 先在本机打包</h2>
+<p>项目根目录执行：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mvn clean package -DskipTests</span></span></code></pre></div></div>
+<p>假设产物是：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">target/demo-app-1.0.0.jar</span></span></code></pre></div></div>
+<h2 id="2-编写-dockerfile">2. 编写 Dockerfile</h2>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-dockerfile">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="s">eclipse-temurin:21-jre</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">COPY</span> target/demo-app-1.0.0.jar app.jar<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">RUN</span> useradd --system --uid <span class="m">10001</span> appuser<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">USER</span><span class="w"> </span><span class="s">appuser</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8080</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;/app/app.jar&#34;</span><span class="p">]</span></span></span></code></pre></div></div>
+<p>这里使用 JRE 镜像而不是 JDK 镜像，体积更小；同时用非 root 用户运行应用。</p>]]></description></item><item><title>Dubbo Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="dubbo-java-小白教程">Dubbo Java 小白教程</h1>
+<p>这是一套面向 Java 初学者的 Dubbo 教程。主线使用 Spring Boot、Dubbo 3.3.0 和 ZooKeeper 注册中心，完成一个“订单服务调用用户服务”的 RPC 项目。</p>
+<p>本系列约定：</p>
+<ul>
+<li>JDK 17</li>
+<li>Maven 3.9+</li>
+<li>Spring Boot 3.x</li>
+<li>Dubbo 3.3.0</li>
+<li>ZooKeeper 3.9+</li>
+<li>Docker Desktop</li>
+</ul>
+<h2 id="阅读顺序">阅读顺序</h2>
+<h3 id="入门">入门</h3>
 <ol>
-<li>
-<p>BootStrap ClassLoader：rt.jar</p>
-</li>
-<li>
-<p>Extension ClassLoader: 加载扩展的 jar 包</p>
-</li>
-<li>
-<p>App ClassLoader：指定的 classpath 下面的 jar 包</p>]]></description></item><item><title>使用Arthas排查慢接口</title><link>https://blog.luhg.cn/%E4%BD%BF%E7%94%A8arthas%E6%8E%92%E6%9F%A5%E6%85%A2%E6%8E%A5%E5%8F%A3/</link><pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/%E4%BD%BF%E7%94%A8arthas%E6%8E%92%E6%9F%A5%E6%85%A2%E6%8E%A5%E5%8F%A3/</guid><description><![CDATA[<h3 id="-场景描述">📝 场景描述</h3>
-<p>线上环境出现慢接口，日志记录不详细，无法通过代码级别的 Debug 定位。需要一种<strong>无需重启、无需改代码</strong> 的方法实时监控 Java 方法的执行耗时。</p>
-<h2 id="-核心方案arthas--trace">🔧 核心方案：Arthas + Trace</h2>
-<p>Arthas 是一款强大的线上监控诊断工具。它可以让你从全局视角实时查看应用的<strong>Load、内存、GC、线程</strong> 状态，并能通过<code>trace</code>命令精准定位业务方法的执行耗时。</p>]]></description></item></channel></rss>
+<li>[[01-什么是Dubbo]]</li>
+<li>[[02-用Docker启动ZooKeeper注册中心]]</li>
+<li>[[03-创建Dubbo多模块项目]]</li>
+<li>[[04-定义公共接口与DTO]]</li>
+</ol>
+<h3 id="跑通-rpc-调用">跑通 RPC 调用</h3>
+<ol start="5">
+<li>[[05-编写Dubbo服务提供者]]</li>
+<li>[[06-编写Dubbo服务消费者]]</li>
+<li>[[07-注册中心与负载均衡]]</li>
+<li>[[08-超时重试异常与幂等]]</li>
+</ol>
+<h3 id="部署与排障">部署与排障</h3>
+<ol start="9">
+<li>[[09-Dubbo项目部署与配置管理]]</li>
+<li>[[10-Dubbo常见问题与排障清单]]</li>
+</ol>
+<h2 id="项目结构">项目结构</h2>
+<p>教程中的示例使用三个 Maven 模块：</p>]]></description></item><item><title>Elasticsearch Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description>&lt;h1 id="elasticsearch-java-小白教程">Elasticsearch Java 小白教程&lt;/h1>
+&lt;p>这是一套面向 Java 初学者的 Elasticsearch 教程。你会从本地启动一个单节点服务开始，逐步学会索引设计、查询 DSL、Java 客户端、Spring Boot 集成和排障。&lt;/p></description></item><item><title>Java 连接 Elasticsearch</title><link>https://blog.luhg.cn/05-java%E8%BF%9E%E6%8E%A5elasticsearch/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-java%E8%BF%9E%E6%8E%A5elasticsearch/</guid><description><![CDATA[<h1 id="java-连接-elasticsearch">Java 连接 Elasticsearch</h1>
+<p>目标：创建 Maven 项目并使用官方 Java API Client 连接本地 Elasticsearch。</p>
+<h2 id="1-pomxml">1. <code>pom.xml</code></h2>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0
+</span></span></span><span class="line"><span class="cl"><span class="s">         https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>elasticsearch-java-demo<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;properties&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;maven.compiler.release&gt;</span>17<span class="nt">&lt;/maven.compiler.release&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/properties&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;groupId&gt;</span>co.elastic.clients<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;artifactId&gt;</span>elasticsearch-java<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;version&gt;</span>9.3.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependencies&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/project&gt;</span></span></span></code></pre></div></div>
+<p>运行：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mvn compile</span></span></code></pre></div></div>
+<p>首次运行会下载依赖；看到 <code>BUILD SUCCESS</code> 即表示项目准备完成。</p>]]></description></item><item><title>Java 生产者发送消息</title><link>https://blog.luhg.cn/04-java%E7%94%9F%E4%BA%A7%E8%80%85%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/04-java%E7%94%9F%E4%BA%A7%E8%80%85%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF/</guid><description><![CDATA[<h1 id="java-生产者发送消息">Java 生产者发送消息</h1>
+<p>目标：用 Java 向 <code>hello-kafka</code> Topic 发送一条带 Key 的消息，并确认 Kafka 已经接收。</p>
+<h2 id="1-编写生产者">1. 编写生产者</h2>
+<p>新建 <code>SimpleProducer.java</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-java">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.kafka</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.producer.KafkaProducer</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.producer.ProducerConfig</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.producer.ProducerRecord</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.producer.RecordMetadata</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.common.serialization.StringSerializer</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Properties</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SimpleProducer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Properties</span><span class="w"> </span><span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ProducerConfig</span><span class="p">.</span><span class="na">BOOTSTRAP_SERVERS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">KafkaConfig</span><span class="p">.</span><span class="na">BOOTSTRAP_SERVERS</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ProducerConfig</span><span class="p">.</span><span class="na">KEY_SERIALIZER_CLASS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">StringSerializer</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ProducerConfig</span><span class="p">.</span><span class="na">VALUE_SERIALIZER_CLASS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">StringSerializer</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ProducerConfig</span><span class="p">.</span><span class="na">ACKS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;all&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">KafkaProducer</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">producer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">KafkaProducer</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">properties</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ProducerRecord</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="k">new</span><span class="w"> </span><span class="n">ProducerRecord</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">KafkaConfig</span><span class="p">.</span><span class="na">TOPIC</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;order-1001&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;支付成功&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">RecordMetadata</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">producer</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">record</span><span class="p">).</span><span class="na">get</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;发送成功：topic=%s, partition=%d, offset=%d%n&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">metadata</span><span class="p">.</span><span class="na">topic</span><span class="p">(),</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="na">partition</span><span class="p">(),</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="na">offset</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="2-运行">2. 运行</h2>
+<p>先确认第 2 篇的 Kafka 容器正在运行，然后在 IDE 中运行 <code>SimpleProducer.main</code>。输出类似：</p>]]></description></item><item><title>Java 实现缓存旁路模式</title><link>https://blog.luhg.cn/06-java%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E6%97%81%E8%B7%AF%E6%A8%A1%E5%BC%8F/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-java%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E6%97%81%E8%B7%AF%E6%A8%A1%E5%BC%8F/</guid><description><![CDATA[<h1 id="java-实现缓存旁路模式">Java 实现缓存旁路模式</h1>
+<p>目标：实现最常见的 Cache Aside（缓存旁路）模式。</p>
+<p>它的读取流程是：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">读 Redis -&gt; 命中则返回
+</span></span><span class="line"><span class="cl">        -&gt; 未命中则查数据库 -&gt; 写 Redis（带 TTL）-&gt; 返回</span></span></code></pre></div></div>
+<h2 id="1-示例代码">1. 示例代码</h2>
+<p>下面用 <code>Map</code> 模拟数据库，重点是流程：</p>]]></description></item><item><title>Java 实现文档增删改查</title><link>https://blog.luhg.cn/06-java%E5%AE%9E%E7%8E%B0%E6%96%87%E6%A1%A3%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/06-java%E5%AE%9E%E7%8E%B0%E6%96%87%E6%A1%A3%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</guid><description><![CDATA[<h1 id="java-实现文档增删改查">Java 实现文档增删改查</h1>
+<p>目标：使用 Java API Client 写入、读取、搜索和删除商品文档。</p>
+<h2 id="1-定义商品对象">1. 定义商品对象</h2>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-java">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.es</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Product</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">brand</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">price</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Product</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Product</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">brand</span><span class="p">,</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">brand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">price</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>字段使用 <code>public</code> 只是为了让入门代码更短；真实项目通常使用私有字段、构造器和 getter/setter。</p>]]></description></item><item><title>Java 使用 Jedis 连接 Redis</title><link>https://blog.luhg.cn/03-java%E4%BD%BF%E7%94%A8jedis%E8%BF%9E%E6%8E%A5redis/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/03-java%E4%BD%BF%E7%94%A8jedis%E8%BF%9E%E6%8E%A5redis/</guid><description><![CDATA[<h1 id="java-使用-jedis-连接-redis">Java 使用 Jedis 连接 Redis</h1>
+<p>目标：创建一个 Maven 项目，用 Java 写入并读取 Redis 字符串。</p>
+<h2 id="1-创建-maven-项目">1. 创建 Maven 项目</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-text">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">redis-java-demo/
+</span></span><span class="line"><span class="cl">├── pom.xml
+</span></span><span class="line"><span class="cl">└── src/main/java/com/example/redis/</span></span></code></pre></div></div>
+<p><code>pom.xml</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-xml">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0
+</span></span></span><span class="line"><span class="cl"><span class="s">         https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>redis-java-demo<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;properties&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;maven.compiler.release&gt;</span>17<span class="nt">&lt;/maven.compiler.release&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/properties&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;groupId&gt;</span>redis.clients<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;artifactId&gt;</span>jedis<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;version&gt;</span>5.2.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependencies&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/project&gt;</span></span></span></code></pre></div></div>
+<h2 id="2-编写第一个-java-程序">2. 编写第一个 Java 程序</h2>
+<p>新建 <code>RedisClient.java</code>：</p>]]></description></item><item><title>Java 消费者消费消息与提交位移</title><link>https://blog.luhg.cn/05-java%E6%B6%88%E8%B4%B9%E8%80%85%E6%B6%88%E8%B4%B9%E6%B6%88%E6%81%AF%E4%B8%8E%E6%8F%90%E4%BA%A4%E4%BD%8D%E7%A7%BB/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/05-java%E6%B6%88%E8%B4%B9%E8%80%85%E6%B6%88%E8%B4%B9%E6%B6%88%E6%81%AF%E4%B8%8E%E6%8F%90%E4%BA%A4%E4%BD%8D%E7%A7%BB/</guid><description><![CDATA[<h1 id="java-消费者消费消息与提交位移">Java 消费者消费消息与提交位移</h1>
+<p>目标：用 Java 接收消息，并理解消费者为什么能在重启后从上次位置继续。</p>
+<h2 id="1-编写消费者">1. 编写消费者</h2>
+<p>新建 <code>SimpleConsumer.java</code>：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-java">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.kafka</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.consumer.ConsumerConfig</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.consumer.ConsumerRecords</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.clients.consumer.KafkaConsumer</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.kafka.common.serialization.StringDeserializer</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.time.Duration</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Properties</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SimpleConsumer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Properties</span><span class="w"> </span><span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">BOOTSTRAP_SERVERS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">KafkaConfig</span><span class="p">.</span><span class="na">BOOTSTRAP_SERVERS</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">GROUP_ID_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;demo-order-group&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">KEY_DESERIALIZER_CLASS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">StringDeserializer</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">VALUE_DESERIALIZER_CLASS_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="n">StringDeserializer</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">AUTO_OFFSET_RESET_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;earliest&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">properties</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">ConsumerConfig</span><span class="p">.</span><span class="na">ENABLE_AUTO_COMMIT_CONFIG</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">KafkaConsumer</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">consumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">KafkaConsumer</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">properties</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">consumer</span><span class="p">.</span><span class="na">subscribe</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">KafkaConfig</span><span class="p">.</span><span class="na">TOPIC</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">ConsumerRecords</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumer</span><span class="p">.</span><span class="na">poll</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofSeconds</span><span class="p">(</span><span class="n">1</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">records</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">record</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                            </span><span class="s">&#34;收到消息：key=%s, value=%s, partition=%d, offset=%d%n&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                            </span><span class="kd">record</span><span class="err">.</span><span class="nc">key</span><span class="p">(),</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="na">value</span><span class="p">(),</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="na">partition</span><span class="p">(),</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="na">offset</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">records</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">consumer</span><span class="p">.</span><span class="na">commitSync</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>先运行消费者，再运行上一章的生产者。消费者会打印收到的消息。停止消费者后重新运行，它不会重复打印已经成功提交的消息。</p>]]></description></item><item><title>Kafka Java 小白教程</title><link>https://blog.luhg.cn/readme/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/readme/</guid><description><![CDATA[<h1 id="kafka-java-小白教程">Kafka Java 小白教程</h1>
+<p>这是一套从零开始的 Kafka 教程。你不需要有消息队列经验；会 Java、Maven 和一点命令行就可以开始。</p>
+<p>教程中的环境约定：</p>
+<ul>
+<li>JDK 17</li>
+<li>Maven 3.9+</li>
+<li>Docker Desktop</li>
+<li>Kafka 3.9.1</li>
+<li>Windows、macOS、Linux 均可，命令中的 <code>docker compose</code> 相同</li>
+</ul>
+<p>学完后，你能独立完成一条常见的业务消息链路：Java 服务发送订单消息，多个消费者按组处理消息，出错时不丢消息、不重复扣费，并知道从哪里开始排障。</p>]]></description></item></channel></rss>

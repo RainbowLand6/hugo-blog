@@ -1,0 +1,11 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Ubuntu - 标签 - Luhong's Blog</title><link>https://blog.luhg.cn/tags/ubuntu/</link><description>Ubuntu - 标签 - Luhong's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.luhg.cn/tags/ubuntu/" rel="self" type="application/rss+xml"/><item><title>Ubuntu 安装 Docker</title><link>https://blog.luhg.cn/02-ubuntu%E5%AE%89%E8%A3%85docker/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><author>Luhong</author><guid>https://blog.luhg.cn/02-ubuntu%E5%AE%89%E8%A3%85docker/</guid><description><![CDATA[<h1 id="ubuntu-安装-docker">Ubuntu 安装 Docker</h1>
+<p>目标：在 Ubuntu 上通过 Docker 官方 apt 仓库安装 Docker Engine 和 Compose 插件，并运行第一个容器。</p>
+<h2 id="1-确认系统和架构">1. 确认系统和架构</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /etc/os-release
+</span></span><span class="line"><span class="cl">uname -m</span></span></code></pre></div></div>
+<p>本篇适用于 Ubuntu 22.04、24.04 等较新的 LTS 版本。使用 CentOS、Rocky Linux、AlmaLinux 时，请按对应系统的官方安装文档添加 Docker 仓库；后续 <code>docker</code> 命令相同。</p>]]></description></item></channel></rss>
