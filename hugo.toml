@@ -14,7 +14,7 @@ copyright = ""
 
 [params]
   defaultTheme = "auto"
-  gitRepo = "https://github.com/1104381746/hugo-blog"
+  gitRepo = "https://github.com/RainbowLand6/hugo-blog"
   dateFormat = "2006-01-02"
   title = "Luhong's Blog"
   description = "个人技术博客"
@@ -63,7 +63,7 @@ copyright = ""
       paginate = 10
 
   [params.social]
-    GitHub = "1104381746"
+    GitHub = "RainbowLand6"
     RSS = true
 
   [params.page]
