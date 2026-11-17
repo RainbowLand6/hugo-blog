@@ -20,7 +20,7 @@
 
 ```bash
 # 克隆（含子模块）
-git clone --recursive https://github.com/1104381746/hugo-blog.git
+git clone --recursive https://github.com/RainbowLand6/hugo-blog.git
 cd hugo-blog
 
 # 启动开发服务器

@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - name: Sync posts from blogs repo
         run: |
-          git clone --depth=1 https://x-access-token:${{ secrets.BLOGS_TOKEN }}@github.com/1104381746/blogs.git /tmp/blogs
+          git clone --depth=1 https://x-access-token:${{ secrets.BLOGS_TOKEN }}@github.com/RainbowLand6/blogs.git /tmp/blogs
           rsync -av --delete /tmp/blogs/blogs/ content/posts/
           find content/posts -name "*.md" -exec sed -i -E 's/^published: true$/is_published: true/; s/^share: true$/is_published: true/; s/^categories:[[:space:]]*([^[:space:]\[].*)$/categories: [\1]/' {} +
       - name: Setup Hugo
