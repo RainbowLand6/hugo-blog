@@ -2,7 +2,7 @@
 <p>目标：在 <code>dubbo-api</code> 中定义用户查询接口，并让传输对象可序列化。</p>
 <h2 id="1-定义-dto">1. 定义 DTO</h2>
 <p><code>UserProfile.java</code>：</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-java">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
